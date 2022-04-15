@@ -1,0 +1,50 @@
+name: build macos
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: ./macos
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: brew update
+      run: brew update
+    
+    - name: install dependencies
+      run: | 
+        brew install SDL2
+        brew install SDL2_image
+        brew install SDL2_ttf
+        brew install SDL2_mixer
+        brew install SDL2_gfx
+        
+    - name: copy resources
+      run: |
+        cp -vr ./data ./build
+    
+    - name: compile
+      run: |
+        g++ -Wall -std=c++17 -O3 source/*.cpp -o ./build/game -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2_gfx
+    
+    - name: compress
+      run: |
+        mkdir release
+        tar -cvf ./release/artifacts.tar ./build
+        ls -al
+        pwd
+      
+    - name: upload macOS binary
+      uses: actions/upload-artifact@v3
+      with:
+        name: artifacts
+        path: /Users/runner/work/bullet-hell-jam-2022/bullet-hell-jam-2022/macos/release
+
