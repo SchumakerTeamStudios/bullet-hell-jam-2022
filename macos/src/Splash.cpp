@@ -3,9 +3,7 @@
 // Hudson Schumaker
 //
 
-#include <stdlib.h>
 #include "Splash.hpp"
-#include "Common.hpp"
 
 Splash::Splash(SDL_Renderer* renderer) {
     this->renderer = renderer;
@@ -18,7 +16,7 @@ Splash::~Splash() {
 }
 
 void Splash::load() {
-    SDL_Surface* logoSurface = IMG_Load("data/schumakerteam.png");
+    SDL_Surface* logoSurface = IMG_Load("data/logo.png");
     logoTexture = SDL_CreateTextureFromSurface(renderer, logoSurface);
 }
 
