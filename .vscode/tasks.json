@@ -15,9 +15,9 @@
                 "-lSDL2_gfx",
                 "-fdiagnostics-color=always",
                 "-g",
-                "${workspaceFolder}/src/*.cpp",
+                "${workspaceFolder}/macos/src/*.cpp",
                 "-o",
-                "${workspaceFolder}/build/game"
+                "${workspaceFolder}/macos/build/game"
             ],
             "options": {
                 "cwd": "${fileDirname}"

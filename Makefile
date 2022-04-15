@@ -1,9 +1,9 @@
 compile:
-	g++ -Wall -std=c++17 -O3 src/*.cpp -o game -I/opt/homebrew/include -L/opt/homebrew/lib -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2_gfx
-	mv -f game build/
+	g++ -Wall -std=c++17 -O3 macos/src/*.cpp -o game -I/opt/homebrew/include -L/opt/homebrew/lib -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2_gfx
+	mv -f game macos/build/
 
 run:
-	./build/game
+	./macos/build/game
 
 clean:
-	rm build/game
+	rm /macos/build/game
