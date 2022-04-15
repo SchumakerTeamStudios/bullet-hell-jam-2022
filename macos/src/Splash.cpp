@@ -16,7 +16,7 @@ Splash::~Splash() {
 }
 
 void Splash::load() {
-    SDL_Surface* logoSurface = IMG_Load("data/schumakerteam.png");
+    SDL_Surface* logoSurface = IMG_Load("data/logo.png");
     logoTexture = SDL_CreateTextureFromSurface(renderer, logoSurface);
 }
 
@@ -34,7 +34,7 @@ void Splash::render() {
 
     SDL_Point size;
     SDL_QueryTexture(logoTexture, NULL, NULL, &size.x, &size.y);
-    SDL_Rect rect = { Common::H_WIDTH - (size.x/2), Common::H_HEIGHT - (size.y/2) -10, size.x, size.y };
+    SDL_Rect rect = { Common::H_WIDTH - (size.x/2) -20, Common::H_HEIGHT - (size.y/2) -20, size.x, size.y };
     SDL_RenderCopy(renderer, logoTexture, NULL, &rect);
 
     SDL_RenderPresent(renderer);   

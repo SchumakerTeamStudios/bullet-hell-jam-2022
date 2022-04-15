@@ -5,6 +5,7 @@
 
 #include "Common.hpp"
 #include "Splash.hpp"
+#include "Menu.hpp"
 
 SDL_Window *window;
 SDL_Renderer *renderer;
@@ -28,6 +29,9 @@ int main(int argc, char **argv) {
 
     Splash* splash = new Splash(renderer);
     delete splash;
+
+    Menu* menu = new Menu(renderer);
+    delete menu;
 
     return 0;
 }
