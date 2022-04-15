@@ -59,7 +59,7 @@ void Menu::render() {
     
     int speed = 8;
     float pi = 3.141592f;
-    int offset = 20;
+    int offset = 30;
     
     SDL_Rect rect = { 
         Common::H_WIDTH - (size.x / 2), 
