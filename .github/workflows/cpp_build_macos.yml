@@ -38,7 +38,7 @@ jobs:
     
     - name: compile
       run: |
-        g++ -Wall -std=c++17 -O3 source/*.cpp -o ./build/game -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2_gfx
+        g++ -Wall -std=c++17 -O3 src/*.cpp -o ./build/game -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2_gfx
     
     - name: compress
       run: |
