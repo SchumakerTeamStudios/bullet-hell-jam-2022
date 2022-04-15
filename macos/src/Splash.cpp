@@ -16,7 +16,7 @@ Splash::~Splash() {
 }
 
 void Splash::load() {
-    SDL_Surface* logoSurface = IMG_Load("data/logo.png");
+    SDL_Surface* logoSurface = IMG_Load("data/schumakerteam.png");
     logoTexture = SDL_CreateTextureFromSurface(renderer, logoSurface);
 }
 
@@ -29,7 +29,7 @@ void Splash::loop() {
 }
 
 void Splash::render() {
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 
     SDL_Point size;
