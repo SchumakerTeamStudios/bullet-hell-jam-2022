@@ -26,12 +26,7 @@ jobs:
         brew install SDL2_ttf
         brew install SDL2_mixer
         brew install SDL2_gfx
-        
-    - name: see files
-      run: |
-        pwd
-        ls -al
-        
+                
     - name: copy resources
       run: |
         cp -vr ./data ./build
