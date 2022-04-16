@@ -1,0 +1,38 @@
+name: build linux 
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: /Users/runner/work/bullet-hell-jam-2022/bullet-hell-jam-2022/linux
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup
+        run: sudo apt-get install -y mingw-w64 libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libsdl2-mixer-dev libsdl2-gfx-dev
+      
+      - name: build
+        run: |
+          g++ -c src/*.cpp -std=c++17 -O3 -Wall -m64 -I include && mkdir -p bin/release && g++ *.o -o bin/release/main -s -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2_gfx
+      
+      - name: copy resources
+        run: |
+          cp -vr ./data/ ./bin/release/
+      
+      - name: compress
+        run: |
+          tar -cvf ./bin/build.tar ./bin/release
+      
+      - name: Upload linux Binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifacts
+          path: /Users/runner/work/bullet-hell-jam-2022/bullet-hell-jam-2022/linux/release
