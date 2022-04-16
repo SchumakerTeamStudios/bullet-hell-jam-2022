@@ -17,10 +17,17 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: install dependencies
-      run: | 
-        C:\msys64\usr\bin\bash.exe pacman -S git mingw-w64-x86_64-toolchain mingw64/mingw-w64-x86_64-SDL2 mingw64/mingw-w64-x86_64-SDL2_mixer mingw64/mingw-w64-x86_64-SDL2_image mingw64/mingw-w64-x86_64-SDL2_ttf mingw64/mingw-w64-x86_64-SDL2_net mingw64/mingw-w64-x86_64-cmake make
-    
+    - uses: msys2/setup-msys2@v2
+      with:
+        update: true
+        install: >-
+          mingw-w64-x86_64-toolchain
+          mingw64/mingw-w64-x86_64-SDL2
+          mingw64/mingw-w64-x86_64-SDL2_mixer
+          mingw64/mingw-w64-x86_64-SDL2_image
+          mingw64/mingw-w64-x86_64-SDL2_ttf
+          mingw64/mingw-w64-x86_64-SDL2_net
+     
     - name: copy resources
       run: |
         cp -vr ./data ./build
@@ -33,8 +40,12 @@ jobs:
       run: |
         mkdir release
         tar -cvf ./release/artifacts.tar ./build
-        ls -al
-        pwd
+        
+    - name: Upload win exe
+      uses: actions/upload-artifact@v3
+      with:
+          name: artifacts
+          path: /windows/bin/
     
 
 
