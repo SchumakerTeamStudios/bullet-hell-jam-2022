@@ -12,6 +12,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
 
+#include "Dimension.hpp"
 #include "Vector2d.hpp"
 
 class Common final {

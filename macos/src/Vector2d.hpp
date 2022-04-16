@@ -6,29 +6,26 @@
 
 #pragma once
 
-template <typename T> struct Vector2d {
-    T x = 0;
-    T y = 0;
+struct Vector2d {
+    float x = 0.0f;
+    float y = 0.0f;
     
     Vector2d() {}
-    Vector2d(T x, T y) : x(x), y(y) {}
+    Vector2d(float x, float y) : x(x), y(y) {}
     
     static Vector2d foward(){
-        return Vector2d(1, 0);
+        return Vector2d(1.0f, 0.0f);
     }
 
     static Vector2d backward() {
-        return Vector2d(-1, 0);
+        return Vector2d(-1.0f, 0.0f);
     }
 
     static Vector2d up() {
-        return Vector2d(0, -1);
+        return Vector2d(0.0f, -1.0f);
     }
 
     static Vector2d down() {
-        return new Vector2d(0, 1);
+        return Vector2d(0.0f, 1.0f);
     }
 };
-
-using Vector2di = Vector2d<int>;
-using Vector2df = Vector2d<float>;
