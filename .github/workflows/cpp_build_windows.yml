@@ -41,6 +41,12 @@ jobs:
     - name: compress
       run: |
         tar -cvf ./bin/release/artifacts.tar ./build
+        pwd
+        ls -al
+        cd bin/release
+        ls -al
+        cd ..
+        cd ..       
         
     - name: Upload win exe
       uses: actions/upload-artifact@v3
