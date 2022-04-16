@@ -11,16 +11,17 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
-#include <SDL2/SDL2_gfxPrimitives.h>
+
+#include "Vector2d.hpp"
 
 class Common final {
     public:
         inline static const char TITLE[] = "- SchumakerTeam -";
         
-        static const int FPS = 60;
-        static const int MILLISECS_PER_FRAME = 1000 / FPS;
-        static const int WIDTH = 800;
-        static const int H_WIDTH = WIDTH / 2;
-        static const int HEIGHT = 600;
-        static const int H_HEIGHT = HEIGHT / 2;
+        static const unsigned short int FPS = 60;
+        static const unsigned short int MILLISECS_PER_FRAME = 1000 / FPS;
+        static const unsigned short int WIDTH = 800;
+        static const unsigned short int H_WIDTH = WIDTH / 2;
+        static const unsigned short int HEIGHT = 600;
+        static const unsigned short int H_HEIGHT = HEIGHT / 2;
 };

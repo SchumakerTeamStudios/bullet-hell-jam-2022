@@ -1,5 +1,7 @@
-
-
+// 
+// SchumakerTeam
+// Hudson Schumaker
+//
 
 #include "Menu.hpp"
 
@@ -15,6 +17,9 @@ Menu::~Menu() {
 void Menu::load() {
     font60 = TTF_OpenFont("data/ExoSpace.ttf", 60);
     font24 = TTF_OpenFont("data/ExoSpace.ttf", 24);
+
+    SDL_Surface* bkgSurface = IMG_Load("data/world.jpg");
+    background = SDL_CreateTextureFromSurface(renderer, bkgSurface);
     
     SDL_Surface* surfaceTitle = TTF_RenderText_Blended(font60, "Bullet Hell 2022", Color::getOrange());
     title = SDL_CreateTextureFromSurface(renderer, surfaceTitle);
@@ -24,15 +29,13 @@ void Menu::load() {
 
     SDL_Surface* surfaceStartGray = TTF_RenderText_Blended(font24, "- Press Enter to Start -", Color::getGray());
     startGrayTexture = SDL_CreateTextureFromSurface(renderer, surfaceStartGray);
-
-    SDL_Surface* bkgSurface = IMG_Load("data/world.jpg");
-    background = SDL_CreateTextureFromSurface(renderer, bkgSurface);
 }
 
 void Menu::update() {
     isRunning = true;
+    int timeToWait = 0;
     while(isRunning) {
-        int timeToWait = Common::MILLISECS_PER_FRAME - (SDL_GetTicks() - millisecsPreviousFrame);
+        timeToWait = Common::MILLISECS_PER_FRAME - (SDL_GetTicks() - millisecsPreviousFrame);
         if (timeToWait > 0 && timeToWait <= Common::MILLISECS_PER_FRAME) {
             SDL_Delay(timeToWait);
         }
@@ -48,18 +51,10 @@ void Menu::update() {
 void Menu::render() {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
-
-    SDL_Rect rectBkg = {
-        0, 0, 800, 600 
-    };
-    SDL_RenderCopy(renderer, background, NULL, &rectBkg);
+    SDL_RenderCopy(renderer, background, NULL, &rectBackground);
 
     SDL_Point size;
     SDL_QueryTexture(title, NULL, NULL, &size.x, &size.y);
-    
-    int speed = 8;
-    float pi = 3.141592f;
-    int offset = 30;
     
     SDL_Rect rect = { 
         Common::H_WIDTH - (size.x / 2), 

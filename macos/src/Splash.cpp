@@ -21,7 +21,7 @@ void Splash::load() {
 }
 
 void Splash::loop() {
-    for(short i = 0; i < 4; i++) {
+    for(char i = 0; i < 4; i++) {
         input();
         render();
         SDL_Delay(1000);
