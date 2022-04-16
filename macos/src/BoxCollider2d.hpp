@@ -14,13 +14,17 @@ class BoxCollider2d final {
 
     public:
         BoxCollider2d();
-        BoxCollider2d(int w, int h);
-        BoxCollider2d(int x, int y, int w, int h);
+        BoxCollider2d(short w, short h);
+        BoxCollider2d(short x, short y, short w, short h);
         BoxCollider2d(Vector2d o, Dimension s);
 
         static bool collide(const BoxCollider2d& a, const BoxCollider2d& b);
 
         BoxCollider2d getBounds();
         Vector2d getLocation();
-        Vector2d getSize();
+        Dimension getSize();
+        short getX() const;
+        short getY() const;
+        short getWidth() const;
+        short getHeight() const;
 };

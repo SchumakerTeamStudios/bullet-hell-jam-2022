@@ -7,9 +7,9 @@
 #pragma once
 
 struct Dimension {
-    float w = 0.0f;
-    float h = 0.0f;
+    short w = 0;
+    short h = 0;
     
     Dimension() {}
-    Dimension(float w, float h) : w(w), h(h) {}
+    Dimension(short w, short h) : w(w), h(h) {}
 };
