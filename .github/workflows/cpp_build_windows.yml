@@ -31,11 +31,10 @@ jobs:
     - name: copy resources
       run: |
         copy ./data/* ./build
-        dir
     
     - name: compile
       run: |
-       g++ -c src/*.cpp -std=c++17 -O3 -Wall -m64 -I include -I C:/SDL2-w64/include && g++ *.o -o bin/release/main -s -L C:/SDL2-w64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
+       g++ -c src/*.cpp -std=c++17 -O3 -Wall -m64 -I C:/msys64/mingw64/include && g++ *.o -o bin/release/main -s -L C:/msys64/mingw64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
     
     - name: compress
       run: |
