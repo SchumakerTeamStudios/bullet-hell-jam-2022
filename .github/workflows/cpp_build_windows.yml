@@ -31,10 +31,11 @@ jobs:
     - name: copy resources
       run: |
         copy ./data/* ./build
+        mkdir mkdir -p bin/release
     
     - name: compile
       run: |
-       g++ -c src/*.cpp -std=c++17 -O3 -Wall -m64 -I D:/a/_temp/msys64/mingw64/include && g++ *.o -o bin/release/main -s -L D:/a/_temp/msys64/mingw64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
+       g++ -Wall -m64 -std=c++17 -O3 src/*.cpp -o bin/release/game -I D:/a/_temp/msys64/mingw64/include -L D:/a/_temp/msys64/mingw64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2_gfx
     
     - name: compress
       run: |
