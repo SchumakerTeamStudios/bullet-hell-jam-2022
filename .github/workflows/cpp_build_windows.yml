@@ -1,0 +1,40 @@
+name: build windows
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: windows-19
+    defaults:
+      run:
+        working-directory: ./windows
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: install dependencies
+      run: | 
+        pacman -S git mingw-w64-x86_64-toolchain mingw64/mingw-w64-x86_64-SDL2 mingw64/mingw-w64-x86_64-SDL2_mixer mingw64/mingw-w64-x86_64-SDL2_image mingw64/mingw-w64-x86_64-SDL2_ttf mingw64/mingw-w64-x86_64-SDL2_net mingw64/mingw-w64-x86_64-cmake make
+    
+    - name: copy resources
+      run: |
+        cp -vr ./data ./build
+    
+    - name: compile
+      run: |
+        g++ -Wall -std=c++17 -O3 src/*.cpp -o ./build/game `sdl2-config --cflags --libs`
+    
+    - name: compress
+      run: |
+        mkdir release
+        tar -cvf ./release/artifacts.tar ./build
+        ls -al
+        pwd
+    
+
+
