@@ -40,13 +40,13 @@ jobs:
     
     - name: compress
       run: |
-        tar -cvf ./release/artifacts.tar ./build
+        tar -cvf ./bin/release/artifacts.tar ./build
         
     - name: Upload win exe
       uses: actions/upload-artifact@v3
       with:
           name: artifacts
-          path: /windows/bin/release
+          path: ./bin/release
     
 
 
