@@ -29,10 +29,10 @@ jobs:
       
       - name: compress
         run: |
-          tar -cvf ./bin/build.tar ./bin/release
+          tar -cvf ./bin/artifacts.tar ./bin/release
       
       - name: Upload linux Binary
         uses: actions/upload-artifact@v3
         with:
           name: artifacts
-          path: /Users/runner/work/bullet-hell-jam-2022/bullet-hell-jam-2022/linux/bin/release
+          path: /Users/runner/work/bullet-hell-jam-2022/bullet-hell-jam-2022/linux/bin/
