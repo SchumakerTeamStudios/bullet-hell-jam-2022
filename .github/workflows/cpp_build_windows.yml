@@ -31,23 +31,22 @@ jobs:
      
     - name: copy resources
       run: |
-        cp -vr ./data/* ./build
+        cp -vr ./data/* ./build/data
         mkdir -p bin/release
     
     - name: compile
       run: |
-       g++ -Wall -m64 -std=c++17 -O3 src/*.cpp -o bin/release/game -I D:/a/_temp/msys64/mingw64/include -L D:/a/_temp/msys64/mingw64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2_gfx
+       g++ -Wall -m64 -std=c++17 -O3 src/*.cpp -o build/game -I D:/a/_temp/msys64/mingw64/include -L D:/a/_temp/msys64/mingw64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2_gfx
     
     - name: compress
       run: |
-        mkdir release
         tar -cvf ./release/artifacts.tar ./build
         
     - name: Upload win exe
       uses: actions/upload-artifact@v3
       with:
           name: artifacts
-          path: /windows/bin/
+          path: /windows/bin/release
     
 
 
