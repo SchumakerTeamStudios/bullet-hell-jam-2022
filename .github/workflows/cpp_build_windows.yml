@@ -30,7 +30,7 @@ jobs:
      
     - name: copy resources
       run: |
-        cp -vr ./data ./build
+        copy ./data/* ./build
     
     - name: compile
       run: |
