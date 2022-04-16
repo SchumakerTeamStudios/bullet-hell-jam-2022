@@ -26,15 +26,16 @@ jobs:
           mingw64/mingw-w64-x86_64-SDL2_mixer
           mingw64/mingw-w64-x86_64-SDL2_image
           mingw64/mingw-w64-x86_64-SDL2_ttf
-          mingw64/mingw-w64-x86_64-SDL2_net
+          mingw64/mingw-w64-x86_64-SDL2_gfx
      
     - name: copy resources
       run: |
         copy ./data/* ./build
+        dir
     
     - name: compile
       run: |
-        g++ -Wall -std=c++17 -O3 src/*.cpp -o ./build/game `sdl2-config --cflags --libs`
+        g++ -c src/*.cpp -std=c++17 -O3 -Wall -m64 -I include -I include && g++ *.o -o bin/release/main -s -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer 
     
     - name: compress
       run: |
