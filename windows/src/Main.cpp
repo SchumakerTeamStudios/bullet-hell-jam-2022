@@ -24,7 +24,7 @@ void setUp() {
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);   
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char* argv[]) {
     setUp(); 
 
     Splash* splash = new Splash(renderer);
