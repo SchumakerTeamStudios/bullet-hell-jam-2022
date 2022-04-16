@@ -31,8 +31,8 @@ jobs:
      
     - name: copy resources
       run: |
-        copy ./data/* ./build
-        mkdir bin/release
+        cp -vr ./data/* ./build
+        mkdir -p bin/release
     
     - name: compile
       run: |
