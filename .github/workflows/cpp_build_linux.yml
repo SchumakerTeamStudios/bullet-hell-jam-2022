@@ -35,4 +35,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: artifacts
-          path: /Users/runner/work/bullet-hell-jam-2022/bullet-hell-jam-2022/linux/bin/
+          path: /home/runner/work/bullet-hell-jam-2022/bullet-hell-jam-2022/linux/bin/
