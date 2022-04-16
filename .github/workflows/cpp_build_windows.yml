@@ -34,7 +34,7 @@ jobs:
     
     - name: compile
       run: |
-       g++ -c src/*.cpp -std=c++17 -O3 -Wall -m64 -I C:/msys64/mingw64/include && g++ *.o -o bin/release/main -s -L C:/msys64/mingw64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
+       g++ -c src/*.cpp -std=c++17 -O3 -Wall -m64 -I D:/a/_temp/msys64/mingw64/include && g++ *.o -o bin/release/main -s -L D:/a/_temp/msys64/mingw64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
     
     - name: compress
       run: |
