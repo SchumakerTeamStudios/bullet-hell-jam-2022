@@ -4,19 +4,17 @@
 // Hudson Schumaker
 //
 
-
 #pragma once
 #include "Common.hpp"
+#include "BoxCollider2d.hpp"
 
 class Sprite {
 
     protected:
         Vector2d position;
         Dimension size;
-
-    private:
         SDL_Texture* sprite;
-
+        
     public:
         Sprite();
 	    Sprite(short x, short y);
@@ -25,6 +23,7 @@ class Sprite {
 
         virtual void draw(SDL_Renderer* renderer) = 0;
 	    Dimension getBounds();
+        BoxCollider2d getCollider();
 	    void setTexture(SDL_Texture* spr);
 		
         short getX() const;

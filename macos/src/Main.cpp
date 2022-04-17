@@ -8,6 +8,7 @@
 #include "Common.hpp"
 #include "Splash.hpp"
 #include "Menu.hpp"
+#include "Level1.hpp"
 
 SDL_Window* window;
 SDL_Renderer* renderer;
@@ -22,11 +23,14 @@ void setUp() {
         Common::HEIGHT,
         SDL_WINDOW_SHOWN | SDL_WINDOW_METAL 
     );
+    
+    SDL_Surface* iconSurface = IMG_Load("data/joypad.png");
+    SDL_SetWindowIcon(window, iconSurface);
 
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);   
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char* argv[]) {
     setUp(); 
 
     Splash* splash = new Splash(renderer);
@@ -34,6 +38,9 @@ int main(int argc, char **argv) {
 
     Menu* menu = new Menu(renderer);
     delete menu;
+
+    Level1* level = new Level1(renderer);
+    level->loop();
 
     return 0;
 }

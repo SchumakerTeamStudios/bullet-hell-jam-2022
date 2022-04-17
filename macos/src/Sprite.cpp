@@ -20,6 +20,14 @@ void Sprite::setTexture(SDL_Texture* spr) {
     size.h = point.y;
 }
 
+BoxCollider2d Sprite::getCollider() {
+    return BoxCollider2d(position, size);
+}
+
+Dimension Sprite::getBounds() {
+    return size;
+}
+
 short Sprite::getX() const { return position.x; };
 void Sprite::setX(short x) { position.x = x; };
 
