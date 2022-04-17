@@ -54,6 +54,9 @@ void Level1::input() {
                 }
             break;
 
+            case SDL_KEYUP:
+                player.move(0, 0);
+            break;
         }
     }
 }

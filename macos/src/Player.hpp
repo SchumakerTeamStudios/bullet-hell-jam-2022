@@ -31,10 +31,10 @@ class Player final : public Sprite {
 
     public:
         Player();
-        Player(int x, int y, int w, int h, SDL_Renderer* renderer);
+        Player(short x, short y, short w, short h, SDL_Renderer* renderer);
         Player(Vector2d position, Dimension size, SDL_Renderer* renderer);
         
-        void move(int dx, int dy);
+        void move(short dx, short dy);
         void draw() override;
         void init();
         void load();

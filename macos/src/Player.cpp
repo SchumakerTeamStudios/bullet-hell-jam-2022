@@ -7,7 +7,7 @@
 #include "Player.hpp"
 
 Player::Player() : Sprite() {};
-Player::Player(int x, int y, int w, int h, SDL_Renderer* renderer) : Sprite(x, y, w, h) {
+Player::Player(short x, short y, short w, short h, SDL_Renderer* renderer) : Sprite(x, y, w, h) {
     this->renderer = renderer;
     init();
     load();
@@ -18,20 +18,18 @@ Player::Player(Vector2d position, Dimension size, SDL_Renderer* renderer) : Spri
     load();
 }
         
-void Player::move(int dx, int dy) {
-    if (dx == 0 && dy == 0) {
-        setTexture(idleTexture);  
-        currentAnimation = &idleAnimation; 
-    }
-
+void Player::move(short dx, short dy) {
     if(dx < 0) {
         setTexture(moveLeftTexture);
         currentAnimation = &moveLeftAnimation;
-    }
-
-    if(dx > 0) {
+    } else if(dx > 0) {
         setTexture(moveRightTexture);
         currentAnimation = &moveRightAnimation;
+    } else {
+        if (currentAnimation != &idleAnimation) {
+            setTexture(idleTexture);  
+            currentAnimation = &idleAnimation;
+        }
     }
 
     position.x += dx;
@@ -61,14 +59,14 @@ void Player::init() {
 }
 
 void Player::load() {
-    SDL_Surface* idleSuface = IMG_Load("data/moveidle.png");
-    idleTexture = SDL_CreateTextureFromSurface(renderer, idleSuface);
+    SDL_Surface* idleSurface = IMG_Load("data/moveidle.png");
+    idleTexture = SDL_CreateTextureFromSurface(renderer, idleSurface);
 
-    SDL_Surface* moveLeftSuface = IMG_Load("data/moveleft.png");
-    moveLeftTexture = SDL_CreateTextureFromSurface(renderer, moveLeftSuface);
+    SDL_Surface* moveLeftSurface = IMG_Load("data/moveleft.png");
+    moveLeftTexture = SDL_CreateTextureFromSurface(renderer, moveLeftSurface);
 
-    SDL_Surface* moveRightSuface = IMG_Load("data/moveright.png");
-    moveRightTexture = SDL_CreateTextureFromSurface(renderer, moveRightSuface);
+    SDL_Surface* moveRightSurface = IMG_Load("data/moveright.png");
+    moveRightTexture = SDL_CreateTextureFromSurface(renderer, moveRightSurface);
 
     SDL_Surface* shootLeftSurface = IMG_Load("data/shootleft.png");
     shootLeftTexture = SDL_CreateTextureFromSurface(renderer, shootLeftSurface);
@@ -81,9 +79,9 @@ void Player::load() {
 
     setTexture(idleTexture); 
 
-    SDL_FreeSurface(idleSuface);
-    SDL_FreeSurface(moveLeftSuface);
-    SDL_FreeSurface(moveRightSuface);
+    SDL_FreeSurface(idleSurface);
+    SDL_FreeSurface(moveLeftSurface);
+    SDL_FreeSurface(moveRightSurface);
     SDL_FreeSurface(shootLeftSurface);
     SDL_FreeSurface(shootRightSurface);
     SDL_FreeSurface(shootUpSurface);
