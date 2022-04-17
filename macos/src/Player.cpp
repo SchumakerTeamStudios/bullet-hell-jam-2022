@@ -37,7 +37,6 @@ void Player::move(short dx, short dy) {
 }
 
 void Player::draw() {
-
     currentAnimation->currentFrame = ((SDL_GetTicks() - currentAnimation->startTime) 
         * currentAnimation->frameSpeedRate / 1000) % currentAnimation->numFrames;
 
