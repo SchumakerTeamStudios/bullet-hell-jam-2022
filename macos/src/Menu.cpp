@@ -13,6 +13,7 @@ Menu::Menu(SDL_Renderer* renderer) {
 }
 
 Menu::~Menu() {
+    unload();
 }
 
 void Menu::load() {

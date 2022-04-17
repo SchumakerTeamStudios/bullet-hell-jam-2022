@@ -12,6 +12,8 @@
 class Player final : public Sprite {
     
     private:
+        SDL_Renderer* renderer;
+        
         AnimationComponent idleAnimation;
         AnimationComponent moveLeftAnimation;
         AnimationComponent moveRightAnimation;
@@ -28,12 +30,11 @@ class Player final : public Sprite {
 
     public:
         Player();
-        Player(int x, int y);
-        Player(int x, int y, int w, int h);
-        Player(Vector2d position, Dimension size);
+        Player(int x, int y, int w, int h, SDL_Renderer* renderer);
+        Player(Vector2d position, Dimension size, SDL_Renderer* renderer);
         
         void move(int dx, int dy);
-        void draw(SDL_Renderer* renderer) override;
+        void draw() override;
         void init();
         void load();
 };

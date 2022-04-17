@@ -8,7 +8,7 @@
 
 Level1::Level1(SDL_Renderer* renderer) {
     this->renderer = renderer;
-    player = Player(368, 535, 64, 64);
+    player = Player(368, 535, 64, 64, renderer);
     load();
 }
 
@@ -72,8 +72,7 @@ void Level1::render() {
     
     SDL_RenderCopy(renderer, background, NULL, &rectBackground);
 
-    player.draw(renderer);
-
+    player.draw();
 
     SDL_RenderPresent(renderer);     
 }
