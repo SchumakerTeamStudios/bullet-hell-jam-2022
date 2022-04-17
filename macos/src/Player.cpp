@@ -47,7 +47,7 @@ void Player::draw() {
 }
 
 void Player::init() {
-    idleAnimation = AnimationComponent(3, 10, true);
+    idleAnimation = AnimationComponent(3, 4, true);
     moveLeftAnimation = AnimationComponent(4, 10, true);
     moveRightAnimation = AnimationComponent(4,10, true);
     shootLeftAnimation = AnimationComponent(3, 10, true);
