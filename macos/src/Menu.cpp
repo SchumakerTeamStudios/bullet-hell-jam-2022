@@ -1,4 +1,5 @@
 // 
+// Bullet Hell Jam 2022
 // SchumakerTeam
 // Hudson Schumaker
 //
@@ -24,10 +25,10 @@ void Menu::load() {
     SDL_Surface* surfaceTitle = TTF_RenderText_Blended(font60, "Bullet Hell 2022", Color::getOrange());
     title = SDL_CreateTextureFromSurface(renderer, surfaceTitle);
 
-    SDL_Surface* surfaceStartWhite = TTF_RenderText_Blended(font24, "- Press Enter to Start -", Color::getWhite());
+    SDL_Surface* surfaceStartWhite = TTF_RenderText_Blended(font24, "- Press Space to Start -", Color::getWhite());
     startWhiteTexture = SDL_CreateTextureFromSurface(renderer, surfaceStartWhite);
 
-    SDL_Surface* surfaceStartGray = TTF_RenderText_Blended(font24, "- Press Enter to Start -", Color::getGray());
+    SDL_Surface* surfaceStartGray = TTF_RenderText_Blended(font24, "- Press Space to Start -", Color::getGray());
     startGrayTexture = SDL_CreateTextureFromSurface(renderer, surfaceStartGray);
 }
 
@@ -91,6 +92,12 @@ void Menu::input() {
             case SDL_QUIT:
                 isRunning = false;
                 exit(0);
+                break;
+            
+            case SDL_KEYDOWN:
+                if (sdlEvent.key.keysym.sym == SDLK_SPACE) {
+                    isRunning = false;
+                }
                 break;
         }
     }

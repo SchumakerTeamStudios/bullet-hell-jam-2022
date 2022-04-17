@@ -92,6 +92,12 @@ void Menu::input() {
                 isRunning = false;
                 exit(0);
                 break;
+
+            case SDL_KEYDOWN:
+                if (sdlEvent.key.keysym.sym == SDLK_EXECUTE) {
+                    isRunning = false;
+                }
+            break;
         }
     }
 }

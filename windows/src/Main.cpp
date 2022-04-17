@@ -7,8 +7,8 @@
 #include "Splash.hpp"
 #include "Menu.hpp"
 
-SDL_Window *window;
-SDL_Renderer *renderer;
+SDL_Window* window;
+SDL_Renderer* renderer;
 
 void setUp() {
     SDL_Init(SDL_INIT_EVERYTHING);
