@@ -8,6 +8,7 @@
 
 Level1::Level1(SDL_Renderer* renderer) {
     this->renderer = renderer;
+    player = Player(368, 535, 64, 64);
     load();
 }
 
@@ -30,10 +31,28 @@ void Level1::input() {
     SDL_Event e;
     while(SDL_PollEvent(&e)) {
         switch(e.type) {
-            case SDL_QUIT: {
+            case SDL_QUIT:
                 isRunning = false;
-            } break;
+                exit(0);
+            break;
             
+            case SDL_KEYDOWN:
+                if (e.key.keysym.sym == SDLK_SPACE) {
+                    //player.fire();
+                }
+                if (e.key.keysym.sym == SDLK_LEFT) {
+                    player.move(-4, 0);
+                }
+                if (e.key.keysym.sym == SDLK_RIGHT) {
+                    player.move(4, 0);
+                }
+                if (e.key.keysym.sym == SDLK_UP) {
+                    player.move(0, -4);
+                }
+                if (e.key.keysym.sym == SDLK_DOWN) {
+                    player.move(0, 4);
+                }
+            break;
 
         }
     }
@@ -53,6 +72,8 @@ void Level1::render() {
     
     SDL_RenderCopy(renderer, background, NULL, &rectBackground);
 
+    player.draw(renderer);
+
 
     SDL_RenderPresent(renderer);     
 }
@@ -60,6 +81,9 @@ void Level1::render() {
 void Level1::load() {
     SDL_Surface* backgroundSurface = IMG_Load("data/back800a.png");
     background = SDL_CreateTextureFromSurface(renderer, backgroundSurface);   
+
+    SDL_Surface* playerIdle = IMG_Load("data/moveidle.png");
+    player.setTexture(SDL_CreateTextureFromSurface(renderer, playerIdle));   
 }
 
 void Level1::unload() {

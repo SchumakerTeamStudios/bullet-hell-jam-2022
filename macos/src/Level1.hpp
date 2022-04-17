@@ -6,6 +6,7 @@
 
 #pragma once
 #include "Canvas.hpp"
+#include "Player.hpp"
 
 class Level1 final : public Canvas {
 
@@ -13,8 +14,10 @@ class Level1 final : public Canvas {
         SDL_Renderer* renderer;
         SDL_Texture* background;
         SDL_Rect rectBackground = {0, 0, 800, 600 };
-        bool isRunning = false;
+        
+        Player player;
 
+        bool isRunning = false;
         void input() override; 
         void update() override;
         void collision() override;
