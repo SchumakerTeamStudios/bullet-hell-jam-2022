@@ -20,6 +20,7 @@ class Player final : public Sprite {
         AnimationComponent shootLeftAnimation;
         AnimationComponent shootRightAnimation;
         AnimationComponent shootUpAnimation;
+        AnimationComponent* currentAnimation;
 
         SDL_Texture* idleTexture;
         SDL_Texture* moveLeftTexture;

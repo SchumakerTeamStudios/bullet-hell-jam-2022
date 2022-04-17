@@ -80,9 +80,6 @@ void Level1::render() {
 void Level1::load() {
     SDL_Surface* backgroundSurface = IMG_Load("data/back800a.png");
     background = SDL_CreateTextureFromSurface(renderer, backgroundSurface);   
-
-    SDL_Surface* playerIdle = IMG_Load("data/moveidle.png");
-    player.setTexture(SDL_CreateTextureFromSurface(renderer, playerIdle));   
 }
 
 void Level1::unload() {
