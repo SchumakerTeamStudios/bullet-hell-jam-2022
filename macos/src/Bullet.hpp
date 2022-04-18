@@ -15,7 +15,7 @@ class Bullet final : public Sprite {
         SDL_Renderer* renderer;
         AnimationComponent animation;
 
-        float speed = 0.5f;
+        float speed = 0.2f;
         int duration = 4000;
         int startTime;
         

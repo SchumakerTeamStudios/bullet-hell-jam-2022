@@ -90,15 +90,13 @@ void Player::draw() {
 }
 
 void Player::fire() {
-    Bullet bullet = Bullet(position.x, position.y, renderer);
+    Bullet bullet = Bullet(position.x + 26, position.y - 18, renderer);
     bullet.setTexture(shoot);
     bullet.dx = 0;
     bullet.dy = -1;
 
-    SDL_Point point;
-    SDL_QueryTexture(shoot, NULL, NULL, &point.x, &point.y);
-    bullet.setWidth(point.x); 
-    bullet.setHeight(point.y);
+    bullet.setWidth(32); 
+    bullet.setHeight(32);
 
     bullets.push_back(bullet);
 }
@@ -134,7 +132,7 @@ void Player::load() {
     SDL_Surface* shootUpSurface = IMG_Load("data/shootup.png");
     shootUpTexture = SDL_CreateTextureFromSurface(renderer, shootUpSurface);
 
-    SDL_Surface* shootSurface = IMG_Load("data/bullet_ball_blue.png");
+    SDL_Surface* shootSurface = IMG_Load("data/shoot4.png");
     shoot = SDL_CreateTextureFromSurface(renderer, shootSurface);
 
     SDL_FreeSurface(idleSurface);
