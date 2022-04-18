@@ -23,14 +23,17 @@ void Bullet::draw() {
     SDL_RenderCopy(renderer, sprite, NULL, &rect);
 }
 
-void Bullet::move(short dx, short dy, float deltaTime) {
-    position.x += dx * 0.25f * deltaTime;
-    position.y += dy * 0.25f * deltaTime;
+void Bullet::move(float deltaTime) {
+    position.x += dx * speed * deltaTime;
+    position.y += dy * speed * deltaTime;
+}
+
+bool Bullet::isExpired() {
+    return (SDL_GetTicks() - startTime) > duration;
 }
 
 void Bullet::init() {
     startTime = SDL_GetTicks();
-
 }
 
 void Bullet::load() {

@@ -67,6 +67,8 @@ void Level1::update() {
     lastTick = currentTick;
 	currentTick = SDL_GetPerformanceCounter();
 	deltaTime = (float)((currentTick - lastTick) * 1000.0f / (float)SDL_GetPerformanceFrequency());
+
+    player.update(deltaTime);
 }
 
 void Level1::collision() {

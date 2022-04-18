@@ -7,21 +7,28 @@
 #pragma once
 #include "Common.hpp"
 #include "Sprite.hpp"
+#include "AnimationComponent.hpp"
 
 class Bullet final : public Sprite {
 
     private:
         SDL_Renderer* renderer;
-        float speed = 1.0f;
-        int duration = 7000;
+        AnimationComponent animation;
+
+        float speed = 0.5f;
+        int duration = 4000;
         int startTime;
+        
 
     public:
         Bullet();
         Bullet(short x, short y, SDL_Renderer* renderer);
+        short dx; 
+        short dy;
 
         void draw() override;
-        void move(short dx, short dy, float deltaTime);
+        void move(float deltaTime);
+        bool isExpired();
         void init();
         void load();
         float getSpeed() const;
