@@ -85,7 +85,7 @@ void Level1::render() {
 }
 
 void Level1::load() {
-    SDL_Surface* backgroundSurface = IMG_Load("data/back800a.png");
+    SDL_Surface* backgroundSurface = IMG_Load("data/scenario1.png");
     background = SDL_CreateTextureFromSurface(renderer, backgroundSurface);   
 }
 

@@ -7,7 +7,7 @@
 #include "Bullet.hpp"
 
 Bullet::Bullet() : Sprite() {};
-Bullet::Bullet(short x, short y, short w, short h, SDL_Renderer* renderer) : Sprite(x, y, w, h) {
+Bullet::Bullet(short x, short y, SDL_Renderer* renderer) : Sprite(x, y, 0, 0) {
     this->renderer = renderer;
     init();
     load();
@@ -31,6 +31,7 @@ void Bullet::move(short dx, short dy, float deltaTime) {
 }
 
 void Bullet::init() {
+    startTime = SDL_GetTicks();
 
 }
 
@@ -39,4 +40,6 @@ void Bullet::load() {
 }
 
 float Bullet::getSpeed() const { return speed; }
-void Bullet::setSpeed(float s) { speed = s;}
+void Bullet::setSpeed(float s) { speed = s; }
+int Bullet::getDuration() const { return duration; }
+void Bullet::setDuration(int d) { duration = d; }

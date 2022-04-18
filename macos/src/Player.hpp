@@ -6,6 +6,7 @@
 
 #pragma once
 #include "Common.hpp"
+#include "Bullet.hpp"
 #include "Sprite.hpp"
 #include "AnimationComponent.hpp"
 
@@ -28,15 +29,17 @@ class Player final : public Sprite {
         SDL_Texture* shootLeftTexture;
         SDL_Texture* shootRightTexture;
         SDL_Texture* shootUpTexture;
+        SDL_Texture* shoot;
+
+        std::vector<Bullet> bullets;
 
     public:
         Player();
         Player(short x, short y, short w, short h, SDL_Renderer* renderer);
         Player(Vector2d position, Dimension size, SDL_Renderer* renderer);
-        ~Player();
         
         void move(short dx, short dy, float deltaTime);
-        void update();
+        void update(float deltaTime);
         void draw() override;
         void fire();
         void init();

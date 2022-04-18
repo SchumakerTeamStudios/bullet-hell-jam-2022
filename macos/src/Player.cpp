@@ -17,8 +17,6 @@ Player::Player(Vector2d position, Dimension size, SDL_Renderer* renderer) : Spri
     init();
     load();
 }
-
-Player::~Player() { unload(); }
         
 void Player::move(short dx, short dy, float deltaTime) {
     if(dx < 0) {
@@ -38,7 +36,7 @@ void Player::move(short dx, short dy, float deltaTime) {
     position.y += dy * 0.25f * deltaTime;
 }
 
-void Player::update() {
+void Player::update(float deltaTime) {
 
 }
 
@@ -57,7 +55,12 @@ void Player::draw() {
 }
 
 void Player::fire() {
-    
+    Bullet bullet = Bullet(position.x, position.y, renderer);
+    bullet.setTexture(shoot);
+    SDL_Point point;
+    SDL_QueryTexture(shoot, NULL, NULL, &point.x, &point.y);
+    bullet.setWidth(point.x); 
+    bullet.setHeight(point.y);
 }
 
 void Player::init() {
@@ -74,6 +77,7 @@ void Player::init() {
 void Player::load() {
     SDL_Surface* idleSurface = IMG_Load("data/moveidle.png");
     idleTexture = SDL_CreateTextureFromSurface(renderer, idleSurface);
+    setTexture(idleTexture); 
 
     SDL_Surface* moveLeftSurface = IMG_Load("data/moveleft.png");
     moveLeftTexture = SDL_CreateTextureFromSurface(renderer, moveLeftSurface);
@@ -90,7 +94,8 @@ void Player::load() {
     SDL_Surface* shootUpSurface = IMG_Load("data/shootup.png");
     shootUpTexture = SDL_CreateTextureFromSurface(renderer, shootUpSurface);
 
-    setTexture(idleTexture); 
+    SDL_Surface* shootSurface = IMG_Load("data/bullet_ball_blue.png");
+    shoot = SDL_CreateTextureFromSurface(renderer, shootSurface);
 
     SDL_FreeSurface(idleSurface);
     SDL_FreeSurface(moveLeftSurface);
@@ -98,6 +103,7 @@ void Player::load() {
     SDL_FreeSurface(shootLeftSurface);
     SDL_FreeSurface(shootRightSurface);
     SDL_FreeSurface(shootUpSurface);
+    SDL_FreeSurface(shootSurface);
 }
 
 void Player::unload() {

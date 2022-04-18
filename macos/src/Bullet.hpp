@@ -13,10 +13,12 @@ class Bullet final : public Sprite {
     private:
         SDL_Renderer* renderer;
         float speed = 1.0f;
+        int duration = 7000;
+        int startTime;
 
     public:
         Bullet();
-        Bullet(short x, short y, short w, short h, SDL_Renderer* renderer);
+        Bullet(short x, short y, SDL_Renderer* renderer);
         ~Bullet();
 
         void draw() override;
@@ -25,4 +27,6 @@ class Bullet final : public Sprite {
         void load();
         float getSpeed() const;
         void setSpeed(float s);
+        int getDuration() const;
+        void setDuration(int d);
 };
