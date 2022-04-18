@@ -17,6 +17,8 @@ Player::Player(Vector2d position, Dimension size, SDL_Renderer* renderer) : Spri
     init();
     load();
 }
+
+Player::~Player() { unload(); }
         
 void Player::move(short dx, short dy, float deltaTime) {
     if(dx < 0) {
@@ -88,4 +90,13 @@ void Player::load() {
     SDL_FreeSurface(shootLeftSurface);
     SDL_FreeSurface(shootRightSurface);
     SDL_FreeSurface(shootUpSurface);
+}
+
+void Player::unload() {
+    SDL_DestroyTexture(idleTexture);
+    SDL_DestroyTexture(moveLeftTexture);
+    SDL_DestroyTexture(moveRightTexture);
+    SDL_DestroyTexture(shootLeftTexture);
+    SDL_DestroyTexture(shootRightTexture);
+    SDL_DestroyTexture(shootUpTexture);
 }
