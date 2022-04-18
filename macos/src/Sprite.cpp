@@ -10,7 +10,6 @@ Sprite::Sprite() : position(Vector2d()), size(Dimension()) {}
 Sprite::Sprite(short x, short y) : position(Vector2d(x, y)), size(Dimension()) {}
 Sprite::Sprite(short x, short y, short w, short h) : position(Vector2d(x, y)), size(Dimension(w, h)) {}
 Sprite::Sprite(Vector2d p, Dimension s) : position(p), size(s) {}
-Sprite::~Sprite() { unload(); }
 
 void Sprite::setTexture(SDL_Texture* spr) {
 	//SDL_Point point;
@@ -26,10 +25,6 @@ BoxCollider2d Sprite::getCollider() {
 
 Dimension Sprite::getBounds() {
     return size;
-}
-
-void Sprite::unload() {
-     SDL_DestroyTexture(sprite);
 }
 
 short Sprite::getX() const { return position.x; };
