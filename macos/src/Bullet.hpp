@@ -11,9 +11,11 @@
 class Bullet final : public Sprite {
 
     private:
+        SDL_Renderer* renderer;
 
     public:
         Bullet(){}
         ~Bullet(){}
+        
         void draw() override;
 };
