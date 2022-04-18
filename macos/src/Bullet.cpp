@@ -37,3 +37,6 @@ void Bullet::init() {
 void Bullet::load() {
 
 }
+
+float Bullet::getSpeed() const { return speed; }
+void Bullet::setSpeed(float s) { speed = s;}

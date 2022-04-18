@@ -12,6 +12,7 @@ class Bullet final : public Sprite {
 
     private:
         SDL_Renderer* renderer;
+        float speed = 1.0f;
 
     public:
         Bullet();
@@ -22,4 +23,6 @@ class Bullet final : public Sprite {
         void move(short dx, short dy, float deltaTime);
         void init();
         void load();
+        float getSpeed() const;
+        void setSpeed(float s);
 };

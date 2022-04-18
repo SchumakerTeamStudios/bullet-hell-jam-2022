@@ -40,7 +40,7 @@ void Level1::input() {
             
             case SDL_KEYDOWN:
                 if (e.key.keysym.sym == SDLK_SPACE) {
-                    //player.fire();
+                    player.fire();
                 }
                 if (e.key.keysym.sym == SDLK_LEFT) {
                     player.move(-1, 0, deltaTime);
