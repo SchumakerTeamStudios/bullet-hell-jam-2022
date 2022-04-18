@@ -19,7 +19,6 @@ class Bullet final : public Sprite {
         int duration = 4000;
         int startTime;
         
-
     public:
         Bullet();
         Bullet(short x, short y, SDL_Renderer* renderer);
