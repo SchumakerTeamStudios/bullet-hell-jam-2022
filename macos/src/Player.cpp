@@ -32,8 +32,28 @@ void Player::move(short dx, short dy, float deltaTime) {
         }
     }
 
-    position.x += dx * 0.25f * deltaTime;
-    position.y += dy * 0.25f * deltaTime;
+    if (position.x > 80 && position.x < 674)  {
+        position.x += dx * 0.25f * deltaTime;
+        if (position.x > 674) {
+            position.x = 673;
+        }
+
+        if (position.x < 80) {
+            position.x = 81;
+        }
+    } 
+
+    if (position.y > 80 && position.y < 460) { 
+        position.y += dy * 0.25f * deltaTime;
+        if (position.y > 460) {
+            position.y = 459;
+        }
+
+        if (position.y < 80) {
+            position.y = 81;
+        }
+    }
+    //std::cout << position.x << " " << position.y << std::endl;
 }
 
 void Player::update(float deltaTime) {
@@ -44,7 +64,7 @@ void Player::draw() {
     currentAnimation->currentFrame = ((SDL_GetTicks() - currentAnimation->startTime) 
         * currentAnimation->frameSpeedRate / 1000) % currentAnimation->numFrames;
 
-    SDL_Rect origin = { currentAnimation->currentFrame * size.w , 0, size.w, size.h };
+    SDL_Rect origin = { currentAnimation->currentFrame * size.w, 0, size.w, size.h };
     SDL_Rect rect;
     rect.x = position.x;
     rect.y = position.y;
@@ -57,6 +77,7 @@ void Player::draw() {
 void Player::fire() {
     Bullet bullet = Bullet(position.x, position.y, renderer);
     bullet.setTexture(shoot);
+
     SDL_Point point;
     SDL_QueryTexture(shoot, NULL, NULL, &point.x, &point.y);
     bullet.setWidth(point.x); 

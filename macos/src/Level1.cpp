@@ -8,7 +8,7 @@
 
 Level1::Level1(SDL_Renderer* renderer) {
     this->renderer = renderer;
-    player = Player(368.0f, 535.0f, 64, 64, renderer);
+    player = Player(356.0f, 535.0f - 80.0f, 64, 64, renderer);
     load();
 }
 
@@ -85,7 +85,7 @@ void Level1::render() {
 }
 
 void Level1::load() {
-    SDL_Surface* backgroundSurface = IMG_Load("data/scenario1.png");
+    SDL_Surface* backgroundSurface = IMG_Load("data/scenario2.png");
     background = SDL_CreateTextureFromSurface(renderer, backgroundSurface);   
 }
 

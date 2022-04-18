@@ -19,7 +19,6 @@ class Bullet final : public Sprite {
     public:
         Bullet();
         Bullet(short x, short y, SDL_Renderer* renderer);
-        ~Bullet();
 
         void draw() override;
         void move(short dx, short dy, float deltaTime);

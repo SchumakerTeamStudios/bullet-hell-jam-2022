@@ -13,8 +13,6 @@ Bullet::Bullet(short x, short y, SDL_Renderer* renderer) : Sprite(x, y, 0, 0) {
     load();
 } 
 
-Bullet::~Bullet() {}
-
 void Bullet::draw() {
     SDL_Rect rect;
     rect.x = position.x;
