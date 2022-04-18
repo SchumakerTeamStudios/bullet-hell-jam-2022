@@ -8,7 +8,7 @@
 
 BoxCollider2d::BoxCollider2d() : offset (Vector2d()), size (Dimension()) {}
 BoxCollider2d::BoxCollider2d(short w, short h) : offset (Vector2d()), size (Dimension(w, h)) {}
-BoxCollider2d::BoxCollider2d(short x, short y, short w, short h) : offset (Vector2d(x, y)), size (Dimension(w, h)) {}
+BoxCollider2d::BoxCollider2d(float x, float y, short w, short h) : offset (Vector2d(x, y)), size (Dimension(w, h)) {}
 BoxCollider2d::BoxCollider2d(Vector2d o, Dimension d) : offset(o), size(d) {}
 
 bool BoxCollider2d::collide(const BoxCollider2d& a, const BoxCollider2d& b) {
@@ -36,11 +36,11 @@ Dimension BoxCollider2d::getSize() {
     return size;
 }
 
-short BoxCollider2d::getX() const {
+float BoxCollider2d::getX() const {
     return offset.x;
 }
 
-short BoxCollider2d::getY() const {
+float BoxCollider2d::getY() const {
     return offset.y;
 }
 

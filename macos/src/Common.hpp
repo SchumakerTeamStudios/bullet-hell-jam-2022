@@ -22,8 +22,8 @@ class Common final {
     public:
         inline static const char TITLE[] = "- SchumakerTeam -";
         
-        static const unsigned short FPS = 60;
-        static const unsigned short MILLISECS_PER_FRAME = 1000 / FPS;
+        constexpr static float FPS = 60.0f;
+        constexpr static float MILLISECS_PER_FRAME = 1000.0f / FPS;
         static const unsigned short WIDTH = 800;
         static const unsigned short H_WIDTH = WIDTH / 2;
         static const unsigned short HEIGHT = 600;

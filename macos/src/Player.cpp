@@ -41,7 +41,11 @@ void Player::draw() {
         * currentAnimation->frameSpeedRate / 1000) % currentAnimation->numFrames;
 
     SDL_Rect origin = { currentAnimation->currentFrame * size.w , 0, size.w, size.h };
-    SDL_Rect rect = { position.x, position.y, size.w, size.h };
+    SDL_Rect rect;
+    rect.x = position.x;
+    rect.y = position.y;
+    rect.w = size.w;
+    rect.h = size.h;
 
     SDL_RenderCopy(renderer, sprite, &origin, &rect);
 }

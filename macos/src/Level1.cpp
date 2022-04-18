@@ -8,7 +8,7 @@
 
 Level1::Level1(SDL_Renderer* renderer) {
     this->renderer = renderer;
-    player = Player(368, 535, 64, 64, renderer);
+    player = Player(368.0f, 535.0f, 64, 64, renderer);
     load();
 }
 
