@@ -34,7 +34,7 @@ class Player final : public Sprite {
         Player(short x, short y, short w, short h, SDL_Renderer* renderer);
         Player(Vector2d position, Dimension size, SDL_Renderer* renderer);
         
-        void move(short dx, short dy);
+        void move(short dx, short dy, float deltaTime);
         void draw() override;
         void init();
         void load();

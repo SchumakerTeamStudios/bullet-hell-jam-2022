@@ -30,6 +30,11 @@ void setUp() {
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);   
 }
 
+void quit() {
+    SDL_Quit();
+	TTF_Quit();
+}
+
 int main(int argc, char* argv[]) {
     setUp(); 
 
@@ -42,5 +47,6 @@ int main(int argc, char* argv[]) {
     Level1* level = new Level1(renderer);
     level->loop();
 
+    quit();
     return 0;
 }

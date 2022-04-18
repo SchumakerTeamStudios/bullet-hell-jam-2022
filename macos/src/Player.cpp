@@ -18,7 +18,7 @@ Player::Player(Vector2d position, Dimension size, SDL_Renderer* renderer) : Spri
     load();
 }
         
-void Player::move(short dx, short dy) {
+void Player::move(short dx, short dy, float deltaTime) {
     if(dx < 0) {
         setTexture(moveLeftTexture);
         currentAnimation = &moveLeftAnimation;
@@ -32,8 +32,8 @@ void Player::move(short dx, short dy) {
         }
     }
 
-    position.x += dx;
-    position.y += dy;
+    position.x += dx * 0.25f * deltaTime;
+    position.y += dy * 0.25f * deltaTime;
 }
 
 void Player::draw() {
@@ -52,11 +52,11 @@ void Player::draw() {
 
 void Player::init() {
     idleAnimation = AnimationComponent(3, 4, true);
-    moveLeftAnimation = AnimationComponent(4, 10, true);
-    moveRightAnimation = AnimationComponent(4,10, true);
-    shootLeftAnimation = AnimationComponent(3, 10, true);
-    shootRightAnimation = AnimationComponent(3, 10, true);
-    shootUpAnimation = AnimationComponent(4, 10, true);
+    moveLeftAnimation = AnimationComponent(4, 6, true);
+    moveRightAnimation = AnimationComponent(4, 6, true);
+    shootLeftAnimation = AnimationComponent(3, 4, true);
+    shootRightAnimation = AnimationComponent(3, 4, true);
+    shootUpAnimation = AnimationComponent(4, 6, true);
 
     currentAnimation = &idleAnimation;
 }

@@ -18,6 +18,8 @@ Level1::~Level1() {
 
 bool Level1::loop() {
     isRunning = true;
+    currentTick = SDL_GetPerformanceCounter();
+
     while(isRunning) {
         input(); 
         update();
@@ -41,28 +43,30 @@ void Level1::input() {
                     //player.fire();
                 }
                 if (e.key.keysym.sym == SDLK_LEFT) {
-                    player.move(-4, 0);
+                    player.move(-1, 0, deltaTime);
                 }
                 if (e.key.keysym.sym == SDLK_RIGHT) {
-                    player.move(4, 0);
+                    player.move(1, 0, deltaTime);
                 }
                 if (e.key.keysym.sym == SDLK_UP) {
-                    player.move(0, -4);
+                    player.move(0, -1, deltaTime);
                 }
                 if (e.key.keysym.sym == SDLK_DOWN) {
-                    player.move(0, 4);
+                    player.move(0, 1, deltaTime);
                 }
             break;
 
             case SDL_KEYUP:
-                player.move(0, 0);
+                player.move(0, 0, deltaTime);
             break;
         }
     }
 }
 
 void Level1::update() {
-    
+    lastTick = currentTick;
+	currentTick = SDL_GetPerformanceCounter();
+	deltaTime = (float)((currentTick - lastTick) * 1000.0f / (float)SDL_GetPerformanceFrequency());
 }
 
 void Level1::collision() {
