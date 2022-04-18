@@ -38,6 +38,10 @@ void Player::move(short dx, short dy, float deltaTime) {
     position.y += dy * 0.25f * deltaTime;
 }
 
+void Player::update() {
+
+}
+
 void Player::draw() {
     currentAnimation->currentFrame = ((SDL_GetTicks() - currentAnimation->startTime) 
         * currentAnimation->frameSpeedRate / 1000) % currentAnimation->numFrames;
@@ -50,6 +54,10 @@ void Player::draw() {
     rect.h = size.h;
 
     SDL_RenderCopy(renderer, sprite, &origin, &rect);
+}
+
+void Player::fire() {
+    
 }
 
 void Player::init() {

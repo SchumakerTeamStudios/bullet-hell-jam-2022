@@ -36,7 +36,9 @@ class Player final : public Sprite {
         ~Player();
         
         void move(short dx, short dy, float deltaTime);
+        void update();
         void draw() override;
+        void fire();
         void init();
         void load();
         void unload();
