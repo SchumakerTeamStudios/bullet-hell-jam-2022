@@ -27,7 +27,7 @@ jobs:
           mingw64/mingw-w64-x86_64-SDL2_image
           mingw64/mingw-w64-x86_64-SDL2_ttf
           mingw64/mingw-w64-x86_64-SDL2_gfx
-          mingw-w64-x86_64-toolchain
+          
      
     - name: copy resources
       run: |
