@@ -35,7 +35,6 @@ jobs:
         cp D:/a/_temp/msys64/mingw64/bin/SDL2_image.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/SDL2_mixer.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/SDL2_ttf.dll ./build/
-        cp D:/a/_temp/msys64/mingw64/bin/libFLAC-8.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/libfreetype-6.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/libjpeg-9.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/libmodplug-1.dll ./build/
