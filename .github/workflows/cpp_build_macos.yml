@@ -39,7 +39,8 @@ jobs:
     - name: bundle app
       run: |
         mkdir -p game.app/Contents
-        mkdir game.app/Contents/MacOS 
+        mkdir game.app/Contents/MacOS
+        mkdir game.app/Contents/libs
         mkdir game.app/Contents/Resources
         touch game.app/Contents/Info.plist
         cp -r build/game game.app/Contents/MacOS/
@@ -47,6 +48,8 @@ jobs:
         cp -r data game.app/Contents/Resources/
         echo "<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>CFBundleIconFile</key><string>iconbuilder.icns</string><key>CFBundleExecutable</key><string>game</string></dict></plist>" >> game.app/Contents/Info.plist
         mv -f game.app build
+        
+        dylibbundler -od -b -x ./build/game.app/Contents/MacOS/game -d ./build/game.app/Contents/libs/ -p @executable_path/../libs/
            
     - name: compress
       run: |
