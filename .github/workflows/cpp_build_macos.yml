@@ -53,6 +53,8 @@ jobs:
            
     - name: compress
       run: |
+        rm -f ./build/game
+        rm -r -f ./build/data
         mkdir release
         tar -cvf ./release/artifacts.tar ./build
         ls -al ./build
