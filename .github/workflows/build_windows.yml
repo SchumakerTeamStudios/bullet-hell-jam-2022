@@ -26,13 +26,14 @@ jobs:
           mingw64/mingw-w64-x86_64-SDL2_image
           mingw64/mingw-w64-x86_64-SDL2_ttf
           mingw64/mingw-w64-x86_64-SDL2_mixer
+          mingw64/mingw-w64-x86_64-SDL2_gfx
           mingw-w64-x86_64-libjpeg-turbo
           mingw-w64-x86_64-freetype
           mingw-w64-x86_64-toolchain
     
     - name: compile
       run: |
-       g++ -Wall -m64 -std=c++17 -O3 src/*.cpp -o build/game -I D:/a/_temp/msys64/mingw64/include -L D:/a/_temp/msys64/mingw64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer 
+       g++ -Wall -m64 -std=c++17 -O3 src/*.cpp -o build/game -I D:/a/_temp/msys64/mingw64/include -L D:/a/_temp/msys64/mingw64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2_gfx
     
     - name: copy resources
       run: |
