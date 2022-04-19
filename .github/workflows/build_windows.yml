@@ -23,11 +23,11 @@ jobs:
         update: true
         install: >-
           mingw-w64-x86_64-toolchain
-          mingw-w64-x86_64-libjpeg-turbo
           mingw64/mingw-w64-x86_64-SDL2
           mingw64/mingw-w64-x86_64-SDL2_image
           mingw64/mingw-w64-x86_64-SDL2_ttf
           mingw64/mingw-w64-x86_64-SDL2_mixer
+          mingw-w64-x86_64-libjpeg-turbo
      
     - name: copy resources
       run: |
