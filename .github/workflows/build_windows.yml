@@ -33,7 +33,8 @@ jobs:
     
     - name: compile
       run: |
-       g++ -Wall -m64 -std=c++17 -O3 src/*.cpp -o build/game -I D:/a/_temp/msys64/mingw64/include -L D:/a/_temp/msys64/mingw64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2_gfx
+        ntldd  D:/a/_temp/msys64/mingw64/bin/SDL2_image.dll
+        g++ -Wall -m64 -std=c++17 -O3 src/*.cpp -o build/game -I D:/a/_temp/msys64/mingw64/include -L D:/a/_temp/msys64/mingw64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2_gfx
     
     - name: copy resources
       run: |
