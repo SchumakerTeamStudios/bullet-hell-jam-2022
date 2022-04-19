@@ -30,7 +30,6 @@ jobs:
                 
     - name: copy resources
       run: |
-        rm -r -f ./build
         cp -vr ./data ./build
     
     - name: compile
@@ -56,8 +55,7 @@ jobs:
       run: |
         mkdir release
         tar -cvf ./release/artifacts.tar ./build
-        ls -al
-        pwd
+        ls -al ./build
       
     - name: upload macOS binary
       uses: actions/upload-artifact@v3
