@@ -18,17 +18,17 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - uses: msys2/setup-msys2@v2
+    - uses: msys2/setup-msys2@v3
       with:
         update: true
         install: >-
           mingw-w64-x86_64-toolchain
           mingw64/mingw-w64-x86_64-SDL2
+          mingw-w64-x86_64-libjpeg-turbo
+          mingw-w64-x86_64-freetype
           mingw64/mingw-w64-x86_64-SDL2_image
           mingw64/mingw-w64-x86_64-SDL2_ttf
           mingw64/mingw-w64-x86_64-SDL2_mixer
-          mingw-w64-x86_64-libjpeg-turbo
-          mingw-w64-x86_64-freetype
      
     - name: copy resources
       run: |
