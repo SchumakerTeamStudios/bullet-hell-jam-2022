@@ -35,30 +35,26 @@ jobs:
         cp D:/a/_temp/msys64/mingw64/bin/SDL2_image.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/SDL2_mixer.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/SDL2_ttf.dll ./build/
+        cp D:/a/_temp/msys64/mingw64/bin/libstdc++-6.dll ./build/
+        cp D:/a/_temp/msys64/mingw64/bin/libwinpthread-1.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/libfreetype-6.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/libmodplug-1.dll ./build/
-        cp D:/a/_temp/msys64/mingw64/bin/libmpg123-0.dll ./build/
-        cp D:/a/_temp/msys64/mingw64/bin/libogg-0.dll ./build/
-        cp D:/a/_temp/msys64/mingw64/bin/libopus-0.dll ./build/
-        cp D:/a/_temp/msys64/mingw64/bin/libopusfile-0.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/libpng16-16.dll ./build/
-        cp D:/a/_temp/msys64/mingw64/bin/libtiff-5.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/libvorbis-0.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/libvorbisfile-3.dll ./build/
-        cp D:/a/_temp/msys64/mingw64/bin/libwebp-7.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/zlib1.dll ./build/
-        
+        cp D:/a/_temp/msys64/mingw64/bin/libmpg123-0.dll ./build/
+                
         cp -vr ./data/* ./build/data
         mkdir -p bin/release
     
     - name: compile
       run: |
-       g++ -Wall -m64 -std=c++17 -O3 src/*.cpp -o build/game -I D:/a/_temp/msys64/mingw64/include -L D:/a/_temp/msys64/mingw64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2_gfx
+       g++ -Wall -m64 -std=c++17 -O3 src/*.cpp -o build/game -I D:/a/_temp/msys64/mingw64/include -L D:/a/_temp/msys64/mingw64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer 
     
     - name: compress
       run: |
-        ls -l D:/a/_temp/msys64/mingw64/lib
-        tar -cvf ./bin/release/artifacts.tar ./build     
+        tar -cvf ./bin/release/game.tar ./build     
         
     - name: Upload win exe
       uses: actions/upload-artifact@v3
