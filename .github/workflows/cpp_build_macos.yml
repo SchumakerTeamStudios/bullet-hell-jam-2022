@@ -37,7 +37,7 @@ jobs:
 
     - name: bundle app
       run: |
-        mkdir -p game.app/Contents
+        mkdir -p "game.app"/Contents
 	      mkdir game.app/Contents/MacOS
 	      mkdir game.app/Contents/Resources
 
