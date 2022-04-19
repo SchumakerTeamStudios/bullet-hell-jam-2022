@@ -26,6 +26,7 @@ jobs:
         brew install SDL2_ttf
         brew install SDL2_mixer
         brew install SDL2_gfx
+        brew install dylibbundler
                 
     - name: copy resources
       run: |
@@ -34,22 +35,19 @@ jobs:
     - name: compile
       run: |
         g++ -Wall -std=c++17 -O3 src/*.cpp -o ./build/game -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2_gfx
-
+   
     - name: bundle app
       run: |
-        mkdir -p "game.app"/Contents
-	      mkdir game.app/Contents/MacOS
-	      mkdir game.app/Contents/Resources
-
-	      touch game.app/Contents/Info.plist
-	      cp -r build/gameengine game.app/Contents/MacOS/
-	      cp data/iconbuilder.icns game.app/Contents/Resources/
-	      cp -r data game.app/Contents/Resources/
-
-	      echo "<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>CFBundleIconFile</key><string>iconbuilder.icns</string><key>CFBundleExecutable</key><string>gameengine</string></dict> </plist>" >> game.app/Contents/Info.plist
-
-	      mv -f game.app build
-    
+        mkdir -p game.app/Contents
+        mkdir game.app/Contents/MacOS 
+        mkdir game.app/Contents/Resources
+        touch game.app/Contents/Info.plist
+        cp -r build/game game.app/Contents/MacOS/
+        cp data/iconbuilder.icns game.app/Contents/Resources/
+        cp -r data game.app/Contents/Resources/
+        echo "<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>CFBundleIconFile</key><string>iconbuilder.icns</string><key>CFBundleExecutable</key><string>gameengine</string></dict> </plist>" >> game.app/Contents/Info.plist
+        mv -f game.app build
+           
     - name: compress
       run: |
         mkdir release
