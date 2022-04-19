@@ -28,6 +28,7 @@ jobs:
           mingw64/mingw-w64-x86_64-SDL2_ttf
           mingw64/mingw-w64-x86_64-SDL2_mixer
           mingw-w64-x86_64-libjpeg-turbo
+          mingw-w64-x86_64-freetype
      
     - name: copy resources
       run: |
