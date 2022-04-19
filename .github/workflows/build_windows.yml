@@ -44,6 +44,10 @@ jobs:
         cp D:/a/_temp/msys64/mingw64/bin/libvorbisfile-3.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/zlib1.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/libmpg123-0.dll ./build/
+        cp D:/a/_temp/msys64/mingw64/bin/libharfbuzz-0.dll ./build/
+        cp D:/a/_temp/msys64/mingw64/bin/libjpeg-8.dll ./build/
+        cp D:/a/_temp/msys64/mingw64/bin/libtiff-5.dll ./build/
+        cp D:/a/_temp/msys64/mingw64/bin/libwebp-7.dll ./build/
                 
         cp -vr ./data/* ./build/data
         mkdir -p bin/release
