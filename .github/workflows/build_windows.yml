@@ -40,6 +40,7 @@ jobs:
     
     - name: compress
       run: |
+        ls -l D:/a/_temp/msys64/mingw64/include
         tar -cvf ./bin/release/artifacts.tar ./build     
         
     - name: Upload win exe
