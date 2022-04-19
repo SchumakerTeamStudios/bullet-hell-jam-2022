@@ -33,3 +33,6 @@
 
 # macOS ds files
 *.DS_Store
+
+# debug symbols
+*.dSYM
