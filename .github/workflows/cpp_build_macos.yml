@@ -35,7 +35,7 @@ jobs:
       run: |
         g++ -Wall -std=c++17 -O3 src/*.cpp -o ./build/game -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2_gfx
 
-    - name: bundle
+    - name: bundle app
       run: |
         mkdir -p game.app/Contents
 	      mkdir game.app/Contents/MacOS
