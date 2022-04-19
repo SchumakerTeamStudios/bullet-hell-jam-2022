@@ -22,28 +22,18 @@ jobs:
       with:
         update: true
         install: >-
-          mingw-w64-x86_64-toolchain
-          
-    - uses: msys2/setup-msys2@v2
-      with:
-        update: true
-        install: >-      
+          mingw64/mingw-w64-x86_64-SDL2
+          mingw64/mingw-w64-x86_64-SDL2_image
+          mingw64/mingw-w64-x86_64-SDL2_ttf
+          mingw64/mingw-w64-x86_64-SDL2_mixer
           mingw-w64-x86_64-libjpeg-turbo
           mingw-w64-x86_64-freetype
-          mingw64/mingw-w64-x86_64-SDL2
-          mingw64/mingw-w64-x86_64-SDL2_image
-          mingw64/mingw-w64-x86_64-SDL2_ttf
-          mingw64/mingw-w64-x86_64-SDL2_mixer
-          
-    - uses: msys2/setup-msys2@v2
-      with:
-        update: true
-        install: >-
-          mingw64/mingw-w64-x86_64-SDL2
-          mingw64/mingw-w64-x86_64-SDL2_image
-          mingw64/mingw-w64-x86_64-SDL2_ttf
-          mingw64/mingw-w64-x86_64-SDL2_mixer
-     
+          mingw-w64-x86_64-toolchain
+    
+    - name: compile
+      run: |
+       g++ -Wall -m64 -std=c++17 -O3 src/*.cpp -o build/game -I D:/a/_temp/msys64/mingw64/include -L D:/a/_temp/msys64/mingw64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer 
+    
     - name: copy resources
       run: |
         cp D:/a/_temp/msys64/mingw64/bin/libfreetype-6.dll ./build/
@@ -69,10 +59,6 @@ jobs:
         cp -vr ./data/* ./build/data
         mkdir -p bin/release
     
-    - name: compile
-      run: |
-       g++ -Wall -m64 -std=c++17 -O3 src/*.cpp -o build/game -I D:/a/_temp/msys64/mingw64/include -L D:/a/_temp/msys64/mingw64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer 
-    
     - name: compress
       run: |
         tar -cvf ./bin/release/game.tar ./build     
@@ -82,6 +68,5 @@ jobs:
       with:
           name: artifacts
           path: D:/a/bullet-hell-jam-2022/bullet-hell-jam-2022/windows/bin/release
-    
-
-
+  
+  
