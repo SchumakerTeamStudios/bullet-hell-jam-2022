@@ -85,6 +85,7 @@ void Level1::collision() {
      for (auto& bullet : bullets) {
         if (BoxCollider2d::collide(bullet.getCollider(), objects.at(0).getCollider())) {
             objects.at(0).getX();
+            hits.push_back(Hit(objects.at(0).getX(),  objects.at(0).getY(), renderer));
         }
     }
 }
@@ -103,6 +104,10 @@ void Level1::render() {
 
     for (auto& bullet : bullets) {
         bullet.draw();
+    } 
+
+    for (auto& hit : hits) {
+        hit.draw();
     } 
 
     SDL_RenderPresent(renderer);     
