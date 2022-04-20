@@ -31,8 +31,6 @@ class Player final : public Sprite {
         SDL_Texture* shootUpTexture;
         SDL_Texture* shoot;
 
-        std::vector<Bullet> bullets;
-
     public:
         Player();
         Player(short x, short y, short w, short h, SDL_Renderer* renderer);
@@ -41,7 +39,7 @@ class Player final : public Sprite {
         void move(short dx, short dy, float deltaTime);
         void update(float deltaTime);
         void draw() override;
-        void fire();
+        Bullet fire();
         void init();
         void load();
         void unload();

@@ -68,6 +68,16 @@ void Level1::update() {
 	currentTick = SDL_GetPerformanceCounter();
 	deltaTime = (float)((currentTick - lastTick) * 1000.0f / (float)SDL_GetPerformanceFrequency());
 
+    for (int i = 0; i < playerBullets.size(); i++) {
+        if (playerBullets.at(i).isExpired()) {
+            playerBullets.erase(playerBullets.begin() + i); 
+        }
+    }
+
+    for(auto& bullet : playerBullets) {
+        bullet.move(deltaTime);
+    }
+
     player.update(deltaTime);
 }
 

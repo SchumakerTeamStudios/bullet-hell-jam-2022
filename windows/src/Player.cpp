@@ -57,18 +57,7 @@ void Player::move(short dx, short dy, float deltaTime) {
 }
 
 void Player::update(float deltaTime) {
-    for (int i = 0; i < bullets.size(); i++) {
-        if (bullets.at(i).isExpired()) {
-            bullets.erase(bullets.begin() + i); 
-        }
-    }
-
-    for(auto& bullet : bullets) {
-        bullet.move(deltaTime);
-    }
-
     //std::cout << bullets.size() << std::endl;
-
 }
 
 void Player::draw() {
@@ -83,13 +72,9 @@ void Player::draw() {
     rect.h = size.h;
 
     SDL_RenderCopy(renderer, sprite, &origin, &rect);
-
-    for(auto& bullet : bullets) {
-        bullet.draw();
-    } 
 }
 
-void Player::fire() {
+Bullet Player::fire() {
     Bullet bullet = Bullet(position.x + 26, position.y - 18, renderer);
     bullet.setTexture(shoot);
     bullet.dx = 0;
@@ -98,7 +83,7 @@ void Player::fire() {
     bullet.setWidth(32); 
     bullet.setHeight(32);
 
-    bullets.push_back(bullet);
+    return bullet;
 }
 
 void Player::init() {

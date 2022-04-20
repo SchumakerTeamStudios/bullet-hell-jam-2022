@@ -6,6 +6,7 @@
 
 #pragma once
 #include "Canvas.hpp"
+#include "Bullet.hpp"
 #include "Player.hpp"
 
 class Level1 final : public Canvas {
@@ -20,6 +21,8 @@ class Level1 final : public Canvas {
         Uint64 currentTick = 0;
         Uint64 lastTick = 0;
         float deltaTime = 0.0f;
+
+        std::vector<Bullet> playerBullets;
 
         void input() override; 
         void update() override;
