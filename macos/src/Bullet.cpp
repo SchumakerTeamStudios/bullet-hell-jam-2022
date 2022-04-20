@@ -6,7 +6,7 @@
 
 #include "Bullet.hpp"
 
-Bullet::Bullet() : Sprite() {};
+Bullet::Bullet() : Sprite() {}
 Bullet::Bullet(short x, short y, SDL_Renderer* renderer) : Sprite(x, y, 0, 0) {
     this->renderer = renderer;
     init();
