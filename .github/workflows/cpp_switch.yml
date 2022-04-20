@@ -7,18 +7,15 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  my_job:
+    container: devkitpro/devkita64# your docker image
 
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
     
-    - name: install dependencies
-      run: | 
-        sudo installer -pkg devkitpro-pacman-installer.pkg -target /
-        
     - name: install nswitch tool chain
       run: |
-        sudo dkp-pacman -S switch-dev
-        sudo dkp-pacman -S switch-sdl2
+        sudo pacman -S switch-dev
+        sudo pacman -S switch-sdl2
