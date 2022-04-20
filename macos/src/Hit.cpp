@@ -14,7 +14,6 @@ Hit::Hit(short x, short y, SDL_Renderer* renderer) : Sprite(x, y, 0, 0) {
 } 
 
 void Hit::draw() {
-
     animation.currentFrame = ((SDL_GetTicks() - animation.startTime) 
         * animation.frameSpeedRate / 1000) % animation.numFrames;
     
@@ -29,8 +28,6 @@ void Hit::draw() {
 }
 
 void Hit::move(float deltaTime) {
-    position.x += dx * speed * deltaTime;
-    position.y += dy * speed * deltaTime;
 }
 
 bool Hit::isExpired() {
@@ -43,7 +40,8 @@ void Hit::init() {
 }
 
 void Hit::load() {
-
+    SDL_Surface* idleSurface = IMG_Load("data/explosionbullet.png");
+    setTexture(SDL_CreateTextureFromSurface(renderer, idleSurface));
 }
 
 int Hit::getDuration() const { return duration; }

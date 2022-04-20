@@ -10,11 +10,9 @@ Bullet::Bullet() : Sprite() {}
 Bullet::Bullet(short x, short y, SDL_Renderer* renderer) : Sprite(x, y, 0, 0) {
     this->renderer = renderer;
     init();
-    load();
 } 
 
 void Bullet::draw() {
-
     animation.currentFrame = ((SDL_GetTicks() - animation.startTime) 
         * animation.frameSpeedRate / 1000) % animation.numFrames;
     
@@ -40,10 +38,6 @@ bool Bullet::isExpired() {
 void Bullet::init() {
     startTime = SDL_GetTicks();
     animation = AnimationComponent(2, 4, true);
-}
-
-void Bullet::load() {
-
 }
 
 float Bullet::getSpeed() const { return speed; }

@@ -29,7 +29,6 @@ class Bullet final : public Sprite {
         void move(float deltaTime);
         bool isExpired();
         void init();
-        void load();
         float getSpeed() const;
         void setSpeed(float s);
         int getDuration() const;
