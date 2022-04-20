@@ -40,7 +40,7 @@ void Level1::input() {
             
             case SDL_KEYDOWN:
                 if (e.key.keysym.sym == SDLK_SPACE) {
-                    player.fire();
+                    bullets.push_back(player.fire());
                 }
                 if (e.key.keysym.sym == SDLK_LEFT) {
                     player.move(-1, 0, deltaTime);
@@ -68,6 +68,16 @@ void Level1::update() {
 	currentTick = SDL_GetPerformanceCounter();
 	deltaTime = (float)((currentTick - lastTick) * 1000.0f / (float)SDL_GetPerformanceFrequency());
 
+    for (int i = 0; i < bullets.size(); i++) {
+        if (bullets.at(i).isExpired()) {
+            bullets.erase(bullets.begin() + i); 
+        }
+    }
+
+    for(auto& bullet : bullets) {
+        bullet.move(deltaTime);
+    }
+
     player.update(deltaTime);
 }
 
@@ -82,6 +92,10 @@ void Level1::render() {
     SDL_RenderCopy(renderer, background, NULL, &rectBackground);
 
     player.draw();
+
+    for (auto& bullet : bullets) {
+        bullet.draw();
+    } 
 
     SDL_RenderPresent(renderer);     
 }
