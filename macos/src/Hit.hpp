@@ -21,9 +21,6 @@ class Hit final : public Sprite {
     public:
         Hit();
         Hit(short x, short y, SDL_Renderer* renderer);
-        short dx; 
-        short dy;
-
         void draw() override;
         void move(float deltaTime);
         bool isExpired();

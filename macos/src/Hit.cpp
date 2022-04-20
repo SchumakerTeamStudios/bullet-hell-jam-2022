@@ -16,15 +16,18 @@ Hit::Hit(short x, short y, SDL_Renderer* renderer) : Sprite(x, y, 0, 0) {
 void Hit::draw() {
     animation.currentFrame = ((SDL_GetTicks() - animation.startTime) 
         * animation.frameSpeedRate / 1000) % animation.numFrames;
-    
-    SDL_Rect origin = { animation.currentFrame * size.w, 0, size.w, size.h };
+
+    SDL_Rect origin = { animation.currentFrame * 32, 0, 32, 32 };
     SDL_Rect rect;
     rect.x = position.x;
     rect.y = position.y;
-    rect.w = size.w;
-    rect.h = size.h;
+    rect.w = 32;
+    rect.h = 32;
 
     SDL_RenderCopy(renderer, sprite, &origin, &rect);
+    if (!animation.isLoop) {
+        animation.isLoop = true;
+    }
 }
 
 void Hit::move(float deltaTime) {
@@ -36,12 +39,16 @@ bool Hit::isExpired() {
 
 void Hit::init() {
     startTime = SDL_GetTicks();
-    animation = AnimationComponent(3, 6, true);
+    animation = AnimationComponent(4, 8, false);
 }
 
 void Hit::load() {
-    SDL_Surface* idleSurface = IMG_Load("data/explosionbullet.png");
-    setTexture(SDL_CreateTextureFromSurface(renderer, idleSurface));
+    SDL_Surface* surface = IMG_Load("data/explosionbullet.png");
+    setTexture(SDL_CreateTextureFromSurface(renderer, surface)); 
+    SDL_Point point;
+    SDL_QueryTexture(sprite, NULL, NULL, &point.x, &point.y);
+    size.w = point.x; 
+    size.h = point.y;
 }
 
 int Hit::getDuration() const { return duration; }

@@ -84,8 +84,8 @@ void Level1::update() {
 void Level1::collision() {
      for (auto& bullet : bullets) {
         if (BoxCollider2d::collide(bullet.getCollider(), objects.at(0).getCollider())) {
-            objects.at(0).getX();
             hits.push_back(Hit(objects.at(0).getX(),  objects.at(0).getY(), renderer));
+            std::cout << "Hit" << std::endl;
         }
     }
 }
