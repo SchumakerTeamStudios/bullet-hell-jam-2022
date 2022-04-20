@@ -24,7 +24,7 @@ void Object::init() {
 }
 
 void Object::load() {
-    SDL_Surface* surface = IMG_Load("data/moveidle.png");
+    SDL_Surface* surface = IMG_Load("data/happyblock.png");
     setTexture(SDL_CreateTextureFromSurface(renderer, surface)); 
     SDL_Point point;
     SDL_QueryTexture(sprite, NULL, NULL, &point.x, &point.y);

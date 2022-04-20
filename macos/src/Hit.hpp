@@ -15,7 +15,6 @@ class Hit final : public Sprite {
         SDL_Renderer* renderer;
         AnimationComponent animation;
 
-        float speed = 0.2f;
         int duration = 2000;
         int startTime;
 
