@@ -74,7 +74,7 @@ void Level1::update() {
         }
     }
 
-    for(auto& bullet : bullets) {
+    for (auto& bullet : bullets) {
         bullet.move(deltaTime);
     }
 
@@ -82,7 +82,11 @@ void Level1::update() {
 }
 
 void Level1::collision() {
-    
+     for (auto& bullet : bullets) {
+        if (BoxCollider2d::collide(bullet.getCollider(), objects.at(0).getCollider())) {
+            objects.at(0).getX();
+        }
+    }
 }
 
 void Level1::render() {
@@ -108,7 +112,7 @@ void Level1::load() {
     SDL_Surface* backgroundSurface = IMG_Load("data/scenario2.png");
     background = SDL_CreateTextureFromSurface(renderer, backgroundSurface); 
 
-    Object object = Object(50, 120, renderer);
+    Object object = Object(120, 120, renderer);
     objects.push_back(object);  
 }
 

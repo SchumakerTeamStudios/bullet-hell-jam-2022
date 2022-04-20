@@ -8,6 +8,7 @@
 
 Object::Object() : Sprite() {}
 Object::Object(short x, short y, SDL_Renderer* renderer) : Sprite(x, y, 0, 0) {
+    this->renderer = renderer;
     init();
 }
 
@@ -26,9 +27,10 @@ void Object::init() {
 }
 
 void Object::load() {
-    SDL_Surface* surface = IMG_Load("data/joypad.png");
-    SDL_Texture* temp = SDL_CreateTextureFromSurface(renderer, surface); 
-    sprite = temp;
-    size.w = 32; 
-    size.h = 32;
+    SDL_Surface* surface = IMG_Load("data/happyblock.png");
+    setTexture(SDL_CreateTextureFromSurface(renderer, surface)); 
+    SDL_Point point;
+    SDL_QueryTexture(sprite, NULL, NULL, &point.x, &point.y);
+    size.w = point.x; 
+    size.h = point.y;
 }
