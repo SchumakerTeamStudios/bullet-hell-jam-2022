@@ -10,12 +10,17 @@ jobs:
   my_job:
     container: devkitpro/devkita64
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v3
     
     - name: install nswitch tool chain
       run: |
-        sudo pacman -S switch-dev
-        sudo pacman -S switch-sdl2
+        sudo dkp-pacman -S switch-dev
+        sudo dkp-pacman -S switch-sdl2
+        sudo dkp-pacman -S switch-sdl2_image
+        sudo dkp-pacman -S switch-sdl2_ttf
+        sudo dkp-pacman -S switch-sdl2_mixer
+        
+        
