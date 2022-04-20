@@ -23,6 +23,7 @@ class Level1 final : public Canvas {
         Uint64 currentTick = 0;
         Uint64 lastTick = 0;
         float deltaTime = 0.0f;
+        
         std::vector<Object> objects;
         std::vector<Bullet> bullets;
         std::vector<Hit> hits;

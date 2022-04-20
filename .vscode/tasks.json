@@ -5,6 +5,7 @@
             "label": "clang++ build",
             "command": "/usr/bin/clang++",
             "args": [
+                "-Wall",
                 "-std=c++17",
                 "-I/opt/homebrew/include",
                 "-L/opt/homebrew/lib",

@@ -91,7 +91,7 @@ void Level1::render() {
     
     SDL_RenderCopy(renderer, background, NULL, &rectBackground);
 
-    for (auto& o :objects) {
+    for (auto& o : objects) {
         o.draw();
     }
 
@@ -108,7 +108,7 @@ void Level1::load() {
     SDL_Surface* backgroundSurface = IMG_Load("data/scenario2.png");
     background = SDL_CreateTextureFromSurface(renderer, backgroundSurface); 
 
-    Object object = Object(50, 50, renderer);
+    Object object = Object(50, 120, renderer);
     objects.push_back(object);  
 }
 
