@@ -8,7 +8,7 @@ on:
 
 jobs:
   my_job:
-    container: devkitpro/devkita64# your docker image
+    container: devkitpro/devkita64
 
     runs-on: ubuntu-latest
 
