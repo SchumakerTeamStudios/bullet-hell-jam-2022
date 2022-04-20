@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: Nswitch
 
 on:
   push:
@@ -9,18 +9,16 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v3
     
     - name: install dependencies
       run: | 
-        wget https://apt.devkitpro.org/install-devkitpro-pacman
-        chmod +x ./install-devkitpro-pacman
-        sudo ./install-devkitpro-pacman
+        sudo installer -pkg devkitpro-pacman-installer.pkg -target /
         
     - name: install nswitch tool chain
       run: |
-        pacman -S switch-dev
-        pacman -S switch-sdl2
+        sudo dkp-pacman -S switch-dev
+        sudo dkp-pacman -S switch-sdl2
