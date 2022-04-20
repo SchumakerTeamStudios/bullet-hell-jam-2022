@@ -24,6 +24,7 @@ class Bullet final : public Sprite {
         Bullet(short x, short y, SDL_Renderer* renderer);
         short dx; 
         short dy;
+        bool destroyed = false; 
 
         void draw() override;
         void move(float deltaTime);

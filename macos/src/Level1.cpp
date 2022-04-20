@@ -69,7 +69,7 @@ void Level1::update() {
 	deltaTime = (float)((currentTick - lastTick) * 1000.0f / (float)SDL_GetPerformanceFrequency());
 
     for (int i = 0; i < bullets.size(); i++) {
-        if (bullets.at(i).isExpired()) {
+        if (bullets.at(i).isExpired() || bullets.at(i).destroyed) {
             bullets.erase(bullets.begin() + i); 
         }
     }
@@ -84,8 +84,8 @@ void Level1::update() {
 void Level1::collision() {
      for (auto& bullet : bullets) {
         if (BoxCollider2d::collide(bullet.getCollider(), objects.at(0).getCollider())) {
-            hits.push_back(Hit(objects.at(0).getX(),  objects.at(0).getY(), renderer));
-            std::cout << "Hit" << std::endl;
+            bullet.destroyed = true;
+            hits.push_back(Hit(bullet.getX(),  bullet.getY(), renderer));
         }
     }
 }

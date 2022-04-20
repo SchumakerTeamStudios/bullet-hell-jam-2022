@@ -13,17 +13,19 @@ Bullet::Bullet(short x, short y, SDL_Renderer* renderer) : Sprite(x, y, 0, 0) {
 } 
 
 void Bullet::draw() {
-    animation.currentFrame = ((SDL_GetTicks() - animation.startTime) 
-        * animation.frameSpeedRate / 1000) % animation.numFrames;
+    if (!destroyed) {
+        animation.currentFrame = ((SDL_GetTicks() - animation.startTime) 
+            * animation.frameSpeedRate / 1000) % animation.numFrames;
     
-    SDL_Rect origin = { animation.currentFrame * size.w, 0, size.w, size.h };
-    SDL_Rect rect;
-    rect.x = position.x;
-    rect.y = position.y;
-    rect.w = size.w;
-    rect.h = size.h;
+        SDL_Rect origin = { animation.currentFrame * size.w, 0, size.w, size.h };
+        SDL_Rect rect;
+        rect.x = position.x;
+        rect.y = position.y;
+        rect.w = size.w;
+        rect.h = size.h;
 
-    SDL_RenderCopy(renderer, sprite, &origin, &rect);
+        SDL_RenderCopy(renderer, sprite, &origin, &rect);
+    }
 }
 
 void Bullet::move(float deltaTime) {

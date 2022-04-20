@@ -14,19 +14,22 @@ Hit::Hit(short x, short y, SDL_Renderer* renderer) : Sprite(x, y, 0, 0) {
 } 
 
 void Hit::draw() {
-    animation.currentFrame = ((SDL_GetTicks() - animation.startTime) 
-        * animation.frameSpeedRate / 1000) % animation.numFrames;
+    if (!destroyed) {
+        animation.currentFrame = ((SDL_GetTicks() - animation.startTime) 
+            * animation.frameSpeedRate / 1000) % animation.numFrames;
 
-    SDL_Rect origin = { animation.currentFrame * 32, 0, 32, 32 };
-    SDL_Rect rect;
-    rect.x = position.x;
-    rect.y = position.y;
-    rect.w = 32;
-    rect.h = 32;
+        SDL_Rect origin = { animation.currentFrame * 32, 0, 32, 32 };
+        SDL_Rect rect;
+        rect.x = position.x;
+        rect.y = position.y;
+        rect.w = 32;
+        rect.h = 32;
 
-    SDL_RenderCopy(renderer, sprite, &origin, &rect);
-    if (!animation.isLoop) {
-        animation.isLoop = true;
+        SDL_RenderCopy(renderer, sprite, &origin, &rect);
+
+        if (!animation.isLoop && animation.currentFrame == (animation.numFrames)-1) {
+            destroyed = true;
+        }
     }
 }
 

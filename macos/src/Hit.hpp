@@ -14,6 +14,7 @@ class Hit final : public Sprite {
     private:
         SDL_Renderer* renderer;
         AnimationComponent animation;
+        bool destroyed = false;
 
         int duration = 2000;
         int startTime;
