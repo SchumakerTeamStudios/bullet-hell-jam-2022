@@ -7,7 +7,9 @@
 #include "Object.hpp"
 
 Object::Object() : Sprite() {}
-Object::Object(short x, short y, SDL_Renderer* renderer) : Sprite(x, y, 0, 0) {}
+Object::Object(short x, short y, SDL_Renderer* renderer) : Sprite(x, y, 0, 0) {
+    init();
+}
 
 void Object::draw() {
     SDL_Rect rect;

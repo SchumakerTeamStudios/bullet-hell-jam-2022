@@ -91,6 +91,10 @@ void Level1::render() {
     
     SDL_RenderCopy(renderer, background, NULL, &rectBackground);
 
+    for (auto& o :objects) {
+        o.draw();
+    }
+
     player.draw();
 
     for (auto& bullet : bullets) {
@@ -102,7 +106,10 @@ void Level1::render() {
 
 void Level1::load() {
     SDL_Surface* backgroundSurface = IMG_Load("data/scenario2.png");
-    background = SDL_CreateTextureFromSurface(renderer, backgroundSurface);   
+    background = SDL_CreateTextureFromSurface(renderer, backgroundSurface); 
+
+    Object object = Object(50, 50, renderer);
+    objects.push_back(object);  
 }
 
 void Level1::unload() {
