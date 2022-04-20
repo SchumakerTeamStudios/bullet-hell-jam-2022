@@ -36,7 +36,7 @@ bool Hit::isExpired() {
 
 void Hit::init() {
     startTime = SDL_GetTicks();
-    animation = AnimationComponent(2, 4, true);
+    animation = AnimationComponent(3, 6, true);
 }
 
 void Hit::load() {
