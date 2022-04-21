@@ -39,8 +39,14 @@ void Level1::input() {
             break;
             
             case SDL_KEYDOWN:
-                if (e.key.keysym.sym == SDLK_SPACE) {
+                if (e.key.keysym.sym == SDLK_s) {
                     bullets.push_back(player.fire());
+                }
+                if (e.key.keysym.sym == SDLK_a) {
+                    bullets.push_back(player.fireLeft());
+                }
+                if (e.key.keysym.sym == SDLK_d) {
+                    bullets.push_back(player.fireRight());
                 }
                 if (e.key.keysym.sym == SDLK_LEFT) {
                     player.move(-1, 0, deltaTime);
@@ -114,7 +120,7 @@ void Level1::render() {
 }
 
 void Level1::load() {
-    SDL_Surface* backgroundSurface = IMG_Load("data/scenario2.png");
+    SDL_Surface* backgroundSurface = IMG_Load("data/back1s1.png");
     background = SDL_CreateTextureFromSurface(renderer, backgroundSurface); 
 
     Object object = Object(120, 120, renderer);

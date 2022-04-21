@@ -33,7 +33,7 @@ void Player::move(short dx, short dy, float deltaTime) {
     }
 
     if (position.x > 80 && position.x < 674)  {
-        position.x += dx * 0.25f * deltaTime;
+        position.x += dx * 0.45f * deltaTime;
         if (position.x > 674) {
             position.x = 673;
         }
@@ -44,7 +44,7 @@ void Player::move(short dx, short dy, float deltaTime) {
     } 
 
     if (position.y > 80 && position.y < 460) { 
-        position.y += dy * 0.25f * deltaTime;
+        position.y += dy * 0.45f * deltaTime;
         if (position.y > 460) {
             position.y = 459;
         }
@@ -75,10 +75,40 @@ void Player::draw() {
 }
 
 Bullet Player::fire() {
+    setTexture(shootUpTexture);
+    currentAnimation = &shootUpAnimation;
     Bullet bullet = Bullet(position.x + 26, position.y - 18, renderer);
-    bullet.setTexture(shoot);
+    bullet.setTexture(bulletTexture);
     bullet.dx = 0;
     bullet.dy = -1;
+
+    bullet.setWidth(32); 
+    bullet.setHeight(32);
+
+    return bullet;
+}
+
+Bullet Player::fireLeft() {
+    setTexture(shootLeftTexture);
+    currentAnimation = &shootLeftAnimation;
+    Bullet bullet = Bullet(position.x - 11, position.y + 14, renderer);
+    bullet.setTexture(bulletLeftTexture);
+    bullet.dx = -1;
+    bullet.dy = 0;
+
+    bullet.setWidth(32); 
+    bullet.setHeight(32);
+
+    return bullet;
+}
+
+Bullet Player::fireRight() {
+    setTexture(shootRightTexture);
+    currentAnimation = &shootRightAnimation;
+    Bullet bullet = Bullet(position.x + 36, position.y + 14, renderer);
+    bullet.setTexture(bulletRightTexture);
+    bullet.dx = 1;
+    bullet.dy = 0;
 
     bullet.setWidth(32); 
     bullet.setHeight(32);
@@ -117,8 +147,14 @@ void Player::load() {
     SDL_Surface* shootUpSurface = IMG_Load("data/shootup.png");
     shootUpTexture = SDL_CreateTextureFromSurface(renderer, shootUpSurface);
 
-    SDL_Surface* shootSurface = IMG_Load("data/shoot4.png");
-    shoot = SDL_CreateTextureFromSurface(renderer, shootSurface);
+    SDL_Surface* bulletSurface = IMG_Load("data/shoot4.png");
+    bulletTexture = SDL_CreateTextureFromSurface(renderer, bulletSurface);
+
+    SDL_Surface* bulletLeftSurface = IMG_Load("data/shoot1.png");
+    bulletLeftTexture = SDL_CreateTextureFromSurface(renderer, bulletLeftSurface);
+
+    SDL_Surface* bulletRightSurface = IMG_Load("data/shoot2.png");
+    bulletRightTexture = SDL_CreateTextureFromSurface(renderer, bulletRightSurface);
 
     SDL_FreeSurface(idleSurface);
     SDL_FreeSurface(moveLeftSurface);
@@ -126,7 +162,9 @@ void Player::load() {
     SDL_FreeSurface(shootLeftSurface);
     SDL_FreeSurface(shootRightSurface);
     SDL_FreeSurface(shootUpSurface);
-    SDL_FreeSurface(shootSurface);
+    SDL_FreeSurface(bulletSurface);
+    SDL_FreeSurface(bulletLeftSurface);
+    SDL_FreeSurface(bulletRightSurface);
 }
 
 void Player::unload() {
@@ -136,4 +174,7 @@ void Player::unload() {
     SDL_DestroyTexture(shootLeftTexture);
     SDL_DestroyTexture(shootRightTexture);
     SDL_DestroyTexture(shootUpTexture);
+    SDL_DestroyTexture(bulletTexture);
+    SDL_DestroyTexture(bulletLeftTexture);
+    SDL_DestroyTexture(bulletRightTexture);
 }
