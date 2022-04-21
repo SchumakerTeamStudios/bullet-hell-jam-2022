@@ -91,6 +91,12 @@ void Level1::update() {
         bullet.move(deltaTime);
     }
 
+    for (int i = 0; i < hits.size(); i++) {
+        if (hits.at(i).isExpired()) {
+            hits.erase(hits.begin() + i); 
+        }
+    }
+
     player.update(deltaTime);
 }
 
