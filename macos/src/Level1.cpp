@@ -102,9 +102,12 @@ void Level1::update() {
 
 void Level1::collision() {
      for (auto& bullet : bullets) {
-        if (BoxCollider2d::collide(bullet.getCollider(), objects.at(0).getCollider())) {
-            bullet.destroyed = true;
-            hits.push_back(Hit(bullet.getX(), bullet.getY(), renderer));
+        for (auto& o: objects) {
+            if (BoxCollider2d::collide(bullet.getCollider(), o.getCollider())) {
+                bullet.destroyed = true;
+                hits.push_back(Hit(bullet.getX(), bullet.getY(), renderer));
+                Mix_PlayChannel(-1, explodeSfx, 0);
+            }
         }
     }
 }
@@ -136,8 +139,16 @@ void Level1::load() {
     SDL_Surface* backgroundSurface = IMG_Load("data/back1s1.png");
     background = SDL_CreateTextureFromSurface(renderer, backgroundSurface); 
 
+    explodeSfx = Mix_LoadWAV("data/explode.mp3");
+
     Object object = Object(120, 120, renderer);
     objects.push_back(object);  
+
+    Object object2 = Object(240, 120, renderer);
+    objects.push_back(object2);
+
+    Object object3 = Object(360, 120, renderer);
+    objects.push_back(object3);  
 }
 
 void Level1::unload() {

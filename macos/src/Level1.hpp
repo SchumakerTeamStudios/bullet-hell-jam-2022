@@ -18,6 +18,7 @@ class Level1 final : public Canvas {
         SDL_Texture* background;
         SDL_Rect rectBackground = { 0, 0, 800, 600 };
         Player player;
+        Mix_Chunk* explodeSfx;
 
         bool isRunning = false;
         Uint64 currentTick = 0;

@@ -16,7 +16,7 @@ class Bullet final : public Sprite {
         AnimationComponent animation;
 
         float speed = 0.4f;
-        int duration = 4000;
+        int duration = 2048;
         int startTime;
         
     public:

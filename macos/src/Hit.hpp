@@ -16,7 +16,7 @@ class Hit final : public Sprite {
         AnimationComponent animation;
         bool destroyed = false;
 
-        int duration = 1000;
+        int duration = 256;
         int startTime;
 
     public:
