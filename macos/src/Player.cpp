@@ -33,7 +33,7 @@ void Player::move(short dx, short dy, float deltaTime) {
     }
 
     if (position.x > 80 && position.x < 674)  {
-        position.x += dx * 0.45f * deltaTime;
+        position.x += dx * 0.25f * deltaTime;
         if (position.x > 674) {
             position.x = 673;
         }
@@ -44,7 +44,7 @@ void Player::move(short dx, short dy, float deltaTime) {
     } 
 
     if (position.y > 80 && position.y < 460) { 
-        position.y += dy * 0.45f * deltaTime;
+        position.y += dy * 0.25f * deltaTime;
         if (position.y > 460) {
             position.y = 459;
         }
