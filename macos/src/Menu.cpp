@@ -23,7 +23,7 @@ void Menu::load() {
     SDL_Surface* bkgSurface = IMG_Load("data/world.jpg");
     background = SDL_CreateTextureFromSurface(renderer, bkgSurface);
     
-    SDL_Surface* surfaceTitle = TTF_RenderText_Blended(font60, "Bullet Hell 2022", Color::getOrange());
+    SDL_Surface* surfaceTitle = TTF_RenderText_Blended(font60, "Cannon Maze", Color::getOrange());
     title = SDL_CreateTextureFromSurface(renderer, surfaceTitle);
 
     SDL_Surface* surfaceStartWhite = TTF_RenderText_Blended(font24, "- Press Space to Start -", Color::getWhite());

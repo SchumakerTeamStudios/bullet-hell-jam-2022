@@ -21,7 +21,7 @@
 class Common final {
     
     public:
-        inline static const char TITLE[] = "- SchumakerTeam -";
+        inline static const char TITLE[] = "- SchumakerTeam Cannon Maze BHJ 22 -";
         
         constexpr static float FPS = 60.0f;
         constexpr static float MILLISECS_PER_FRAME = 1000.0f / FPS;
