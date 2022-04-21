@@ -33,6 +33,8 @@ class Player final : public Sprite {
         SDL_Texture* bulletLeftTexture;
         SDL_Texture* bulletRightTexture;
 
+        Mix_Chunk* shootSfx;
+
     public:
         Player();
         Player(short x, short y, short w, short h, SDL_Renderer* renderer);

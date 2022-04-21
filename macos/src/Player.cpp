@@ -84,6 +84,7 @@ Bullet Player::fire() {
 
     bullet.setWidth(32); 
     bullet.setHeight(32);
+    Mix_PlayChannel(-1, shootSfx, 0);
 
     return bullet;
 }
@@ -98,6 +99,7 @@ Bullet Player::fireLeft() {
 
     bullet.setWidth(32); 
     bullet.setHeight(32);
+    Mix_PlayChannel(-1, shootSfx, 0);
 
     return bullet;
 }
@@ -112,6 +114,7 @@ Bullet Player::fireRight() {
 
     bullet.setWidth(32); 
     bullet.setHeight(32);
+    Mix_PlayChannel(-1, shootSfx, 0);
 
     return bullet;
 }
@@ -155,6 +158,8 @@ void Player::load() {
 
     SDL_Surface* bulletRightSurface = IMG_Load("data/shoot2.png");
     bulletRightTexture = SDL_CreateTextureFromSurface(renderer, bulletRightSurface);
+
+    shootSfx = Mix_LoadWAV("data/laser.mp3");
 
     SDL_FreeSurface(idleSurface);
     SDL_FreeSurface(moveLeftSurface);
