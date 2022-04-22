@@ -145,16 +145,16 @@ void Level1::load() {
 
     explodeSfx = Mix_LoadWAV("data/explode.mp3");
 
-    Enemy object = Enemy(120, 120, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
+    Enemy object = Enemy(120, 40, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
     enemies.push_back(object);  
 
-    Enemy object2 = Enemy(120, 120, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
+    Enemy object2 = Enemy(480, 80, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
     enemies.push_back(object2);
 
-    Enemy object3 = Enemy(120, 120, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
+    Enemy object3 = Enemy(480, 120, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
     enemies.push_back(object3);  
 
-    Enemy object4 = Enemy(120, 120, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
+    Enemy object4 = Enemy(120, 160, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
     enemies.push_back(object4);  
 }
 
