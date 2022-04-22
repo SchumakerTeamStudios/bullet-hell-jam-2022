@@ -109,6 +109,7 @@ void Level1::update() {
 
     for(auto& e : enemies) {
         e.update(deltaTime, &enemiesBullets);
+        e.move(deltaTime);
     }
 
     player.update(deltaTime);
@@ -159,7 +160,7 @@ void Level1::load() {
 
     explodeSfx = Mix_LoadWAV("data/explode.mp3");
 
-    Enemy object = Enemy(120, 40, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
+    Enemy object = Enemy(400, 40, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
     ProjectileEmitterComponent pec = ProjectileEmitterComponent(1, 1);
     pec.speed = 0.3f;
     pec.angle = 15;
@@ -175,7 +176,7 @@ void Level1::load() {
     ProjectileEmitterComponent pec3 = ProjectileEmitterComponent(-1, 1);
     pec3.speed = 0.2f;
     pec3.angle = 90;
-    pec3.repeatFrequency = 500;
+    pec3.repeatFrequency = 875;
     object.pecs.push_back(pec3);
 
     enemies.push_back(object);  

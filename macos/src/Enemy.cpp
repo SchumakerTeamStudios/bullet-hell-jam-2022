@@ -18,7 +18,7 @@ Enemy::Enemy(short x, short y, short w, short h, std::string sprtName, std::stri
     init();
 }
 
-void Enemy::move(short dx, short dy, float deltaTime) {
+void Enemy::move(float deltaTime) {
 
 }
 
