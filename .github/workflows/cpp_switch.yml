@@ -9,7 +9,6 @@ on:
 jobs:
   my_job:
     container: devkitpro/devkita64
-
     runs-on: ubuntu-latest
 
     steps:
