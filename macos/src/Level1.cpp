@@ -87,6 +87,12 @@ void Level1::update() {
         }
     }
 
+    for (int i = 0; i < enemiesBullets.size(); i++) {
+        if (enemiesBullets.at(i).isExpired() || enemiesBullets.at(i).destroyed) {
+            enemiesBullets.erase(enemiesBullets.begin() + i); 
+        }
+    }
+
     for (auto& bullet : bullets) {
         bullet.move(deltaTime);
     }
@@ -155,7 +161,8 @@ void Level1::load() {
 
     Enemy object = Enemy(120, 40, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
     object.pec = ProjectileEmitterComponent(0, 1);
-    object.pec.speed = 0.1f;
+    object.pec.speed = 0.25f;
+    object.pec.angle = 45.0f;
     object.pec.repeatFrequency = 1000;
     enemies.push_back(object);  
 
