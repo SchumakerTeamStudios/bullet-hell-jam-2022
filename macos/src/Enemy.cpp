@@ -22,7 +22,6 @@ void Enemy::move(short dx, short dy, float deltaTime) {
 }
 
 void Enemy::update(float deltaTime, std::vector<Bullet>* bullets) { 
-
     if (SDL_GetTicks() - pec.lastEmissionTime > pec.repeatFrequency) {
         bullets->push_back(fire());
         pec.lastEmissionTime = SDL_GetTicks();
