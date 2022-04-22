@@ -47,8 +47,11 @@ void Enemy::draw() {
 Bullet Enemy::fire() {
     Bullet bullet = Bullet(position.x, position.y, renderer);
     bullet.setTexture(shootTexture);
-    bullet.dx = pec.dx;
-    bullet.dy = pec.dy;
+
+    float dx = cos(pec.angle * Common::PI / 180.0f);
+    float dy = sin(pec.angle * Common::PI / 180.0f);
+    bullet.dx = dx;
+    bullet.dy = dy;
     bullet.speed = pec.speed;
 
     bullet.setWidth(32); 
