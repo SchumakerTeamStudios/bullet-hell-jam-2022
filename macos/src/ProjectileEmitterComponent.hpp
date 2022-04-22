@@ -8,9 +8,10 @@
 #include "Common.hpp"
 
 struct ProjectileEmitterComponent {
-    float speed = 0.2f;
-    short dx, dy;
-    float angle; 
+    float speed = 0.0f;
+    short dx = 0; 
+    short dy = 0;
+    int angle = 0; 
     int repeatFrequency;
     int lastEmissionTime;
 

@@ -30,5 +30,5 @@ class Common final {
         static const unsigned short H_WIDTH = WIDTH / 2;
         static const unsigned short HEIGHT = 600;
         static const unsigned short H_HEIGHT = HEIGHT / 2;
-        constexpr static float PI = 3.14159265f;
+        constexpr static float PI = 3.1415f;
 };

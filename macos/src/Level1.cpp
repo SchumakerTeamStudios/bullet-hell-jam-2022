@@ -160,10 +160,24 @@ void Level1::load() {
     explodeSfx = Mix_LoadWAV("data/explode.mp3");
 
     Enemy object = Enemy(120, 40, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
-    object.pec = ProjectileEmitterComponent(0, 1);
-    object.pec.speed = 0.25f;
-    object.pec.angle = 45.0f;
-    object.pec.repeatFrequency = 1000;
+    ProjectileEmitterComponent pec = ProjectileEmitterComponent(1, 1);
+    pec.speed = 0.3f;
+    pec.angle = 15;
+    pec.repeatFrequency = 1000;
+    object.pecs.push_back(pec);
+
+    ProjectileEmitterComponent pec2 = ProjectileEmitterComponent(-1, 1);
+    pec2.speed = 0.3f;
+    pec2.angle = 15;
+    pec2.repeatFrequency = 1000;
+    object.pecs.push_back(pec2);
+
+    ProjectileEmitterComponent pec3 = ProjectileEmitterComponent(-1, 1);
+    pec3.speed = 0.2f;
+    pec3.angle = 90;
+    pec3.repeatFrequency = 500;
+    object.pecs.push_back(pec3);
+
     enemies.push_back(object);  
 
     //Enemy object2 = Enemy(480, 80, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);

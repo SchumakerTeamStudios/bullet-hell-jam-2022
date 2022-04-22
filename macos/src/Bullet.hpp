@@ -15,15 +15,14 @@ class Bullet final : public Sprite {
         SDL_Renderer* renderer;
         AnimationComponent animation;
 
-        
         int duration = 2048;
         int startTime;
         
     public:
         Bullet();
         Bullet(short x, short y, SDL_Renderer* renderer);
-        short dx; 
-        short dy;
+        float dx; 
+        float dy;
         float speed = 0.4f;
         bool destroyed = false; 
 

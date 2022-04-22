@@ -5,6 +5,7 @@
 //
 
 #include "Enemy.hpp"
+#define PI 3.14159265
 
 Enemy::Enemy() : Sprite() {}
 Enemy::Enemy(short x, short y, short w, short h, std::string sprtName, std::string ssfxName, 
@@ -22,10 +23,12 @@ void Enemy::move(short dx, short dy, float deltaTime) {
 }
 
 void Enemy::update(float deltaTime, std::vector<Bullet>* bullets) { 
-    if (SDL_GetTicks() - pec.lastEmissionTime > pec.repeatFrequency) {
-        bullets->push_back(fire());
-        pec.lastEmissionTime = SDL_GetTicks();
-    }    
+    for (auto& pec : pecs) {
+        if (SDL_GetTicks() - pec.lastEmissionTime > pec.repeatFrequency) {
+            bullets->push_back(fire(&pec));
+            pec.lastEmissionTime = SDL_GetTicks();
+        }    
+    }
 }
 
 void Enemy::draw() {
@@ -44,15 +47,15 @@ void Enemy::draw() {
     }
 }
 
-Bullet Enemy::fire() {
-    Bullet bullet = Bullet(position.x, position.y, renderer);
+Bullet Enemy::fire(ProjectileEmitterComponent* pec) {
+    Bullet bullet = Bullet(position.x + 17, position.y +32, renderer);
     bullet.setTexture(shootTexture);
 
-    float dx = cos(pec.angle * Common::PI / 180.0f);
-    float dy = sin(pec.angle * Common::PI / 180.0f);
-    bullet.dx = dx;
-    bullet.dy = dy;
-    bullet.speed = pec.speed;
+    float dx = cos(pec->angle * PI / 180.0f);
+    float dy = sin(pec->angle * PI / 180.0f);
+    bullet.dx = dx * pec->dx;
+    bullet.dy = dy * pec->dy;
+    bullet.speed = pec->speed;
 
     bullet.setWidth(32); 
     bullet.setHeight(32);
