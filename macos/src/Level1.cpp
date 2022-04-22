@@ -102,7 +102,7 @@ void Level1::update() {
 
 void Level1::collision() {
      for (auto& bullet : bullets) {
-        for (auto& o: objects) {
+        for (auto& o: enemies) {
             if (BoxCollider2d::collide(bullet.getCollider(), o.getCollider())) {
                 bullet.destroyed = true;
                 hits.push_back(Hit(bullet.getX(), bullet.getY(), renderer));
@@ -118,13 +118,17 @@ void Level1::render() {
     
     SDL_RenderCopy(renderer, background, NULL, &rectBackground);
 
-    for (auto& o : objects) {
+    for (auto& o : enemies) {
         o.draw();
     }
 
     player.draw();
 
     for (auto& bullet : bullets) {
+        bullet.draw();
+    } 
+
+    for (auto& bullet : enemiesBullets) {
         bullet.draw();
     } 
 
@@ -141,14 +145,17 @@ void Level1::load() {
 
     explodeSfx = Mix_LoadWAV("data/explode.mp3");
 
-    Object object = Object(120, 120, renderer);
-    objects.push_back(object);  
+    Enemy object = Enemy(120, 120, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
+    enemies.push_back(object);  
 
-    Object object2 = Object(240, 120, renderer);
-    objects.push_back(object2);
+    Enemy object2 = Enemy(120, 120, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
+    enemies.push_back(object2);
 
-    Object object3 = Object(360, 120, renderer);
-    objects.push_back(object3);  
+    Enemy object3 = Enemy(120, 120, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
+    enemies.push_back(object3);  
+
+    Enemy object4 = Enemy(120, 120, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
+    enemies.push_back(object4);  
 }
 
 void Level1::unload() {

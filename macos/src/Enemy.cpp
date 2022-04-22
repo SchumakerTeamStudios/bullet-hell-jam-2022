@@ -72,5 +72,6 @@ void Enemy::load() {
     shootSfx = Mix_LoadWAV(shootSfxPath.c_str());
 }
 
-void Enemy::unload() {}
-
+void Enemy::unload() {
+    
+}

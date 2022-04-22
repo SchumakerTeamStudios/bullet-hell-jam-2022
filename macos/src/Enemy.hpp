@@ -24,8 +24,7 @@ class Enemy final : public Sprite {
        
     public:
         Enemy();
-        Enemy(short x, short y, short w, short h, std::string sprtName, std::string ssfxName, std::string ssgfxName,
-            SDL_Renderer* renderer);
+        Enemy(short x, short y, short w, short h, std::string sprtName, std::string ssfxName, std::string ssgfxName, SDL_Renderer* renderer);
         
         void move(short dx, short dy, float deltaTime);
         void update(float deltaTime);

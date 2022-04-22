@@ -7,8 +7,8 @@
 #pragma once
 #include "Bullet.hpp"
 #include "Canvas.hpp"
+#include "Enemy.hpp"
 #include "Hit.hpp"
-#include "Object.hpp"
 #include "Player.hpp"
 
 class Level1 final : public Canvas {
@@ -25,8 +25,9 @@ class Level1 final : public Canvas {
         Uint64 lastTick = 0;
         float deltaTime = 0.0f;
         
-        std::vector<Object> objects;
+        std::vector<Enemy> enemies;
         std::vector<Bullet> bullets;
+        std::vector<Bullet> enemiesBullets;
         std::vector<Hit> hits;
 
         void input() override; 
