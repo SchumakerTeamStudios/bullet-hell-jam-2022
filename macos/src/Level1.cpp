@@ -155,6 +155,7 @@ void Level1::load() {
 
     Enemy object = Enemy(120, 40, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
     object.pec = ProjectileEmitterComponent(0, 1);
+    object.pec.speed = 0.1f;
     object.pec.repeatFrequency = 1000;
     enemies.push_back(object);  
 
