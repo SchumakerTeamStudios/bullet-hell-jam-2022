@@ -21,8 +21,12 @@ void Enemy::move(short dx, short dy, float deltaTime) {
 
 }
 
-void Enemy::update(float deltaTime) { 
+void Enemy::update(float deltaTime, std::vector<Bullet>* bullets) { 
 
+    if (SDL_GetTicks() - pec.lastEmissionTime > pec.repeatFrequency) {
+        bullets->push_back(fire());
+        pec.lastEmissionTime = SDL_GetTicks();
+    }    
 }
 
 void Enemy::draw() {
@@ -44,8 +48,8 @@ void Enemy::draw() {
 Bullet Enemy::fire() {
     Bullet bullet = Bullet(position.x, position.y, renderer);
     bullet.setTexture(shootTexture);
-    bullet.dx = 1;
-    bullet.dy = 0;
+    bullet.dx = pec.dx;
+    bullet.dy = pec.dy;
 
     bullet.setWidth(32); 
     bullet.setHeight(32);

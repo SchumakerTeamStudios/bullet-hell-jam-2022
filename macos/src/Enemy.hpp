@@ -8,6 +8,7 @@
 #include "Bullet.hpp"
 #include "Sprite.hpp"
 #include "AnimationComponent.hpp"
+#include "ProjectileEmitterComponent.hpp"
 
 class Enemy final : public Sprite {
     
@@ -21,17 +22,17 @@ class Enemy final : public Sprite {
         std::string shootSfxName;
         std::string shootGfxName;
     
-       
     public:
         Enemy();
         Enemy(short x, short y, short w, short h, std::string sprtName, std::string ssfxName, std::string ssgfxName, SDL_Renderer* renderer);
         
         void move(short dx, short dy, float deltaTime);
-        void update(float deltaTime);
+        void update(float deltaTime, std::vector<Bullet>*  bullets);
         void draw() override;
         Bullet fire();
         void init();
         void load();
         void unload();    
-        int hp;  
+        int hp; 
+        ProjectileEmitterComponent pec; 
 };

@@ -91,10 +91,18 @@ void Level1::update() {
         bullet.move(deltaTime);
     }
 
+    for (auto& bullet : enemiesBullets) {
+        bullet.move(deltaTime);
+    }
+
     for (int i = 0; i < hits.size(); i++) {
         if (hits.at(i).isExpired()) {
             hits.erase(hits.begin() + i); 
         }
+    }
+
+    for(auto& e : enemies) {
+        e.update(deltaTime, &enemiesBullets);
     }
 
     player.update(deltaTime);
@@ -146,16 +154,18 @@ void Level1::load() {
     explodeSfx = Mix_LoadWAV("data/explode.mp3");
 
     Enemy object = Enemy(120, 40, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
+    object.pec = ProjectileEmitterComponent(0, 1);
+    object.pec.repeatFrequency = 1000;
     enemies.push_back(object);  
 
-    Enemy object2 = Enemy(480, 80, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
-    enemies.push_back(object2);
+    //Enemy object2 = Enemy(480, 80, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
+    //enemies.push_back(object2);
 
-    Enemy object3 = Enemy(480, 120, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
-    enemies.push_back(object3);  
+    //Enemy object3 = Enemy(480, 120, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
+    //enemies.push_back(object3);  
 
-    Enemy object4 = Enemy(120, 160, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
-    enemies.push_back(object4);  
+    //Enemy object4 = Enemy(120, 160, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
+    //enemies.push_back(object4);  
 }
 
 void Level1::unload() {

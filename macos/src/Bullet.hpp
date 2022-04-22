@@ -15,7 +15,7 @@ class Bullet final : public Sprite {
         SDL_Renderer* renderer;
         AnimationComponent animation;
 
-        float speed = 0.4f;
+        
         int duration = 2048;
         int startTime;
         
@@ -24,6 +24,7 @@ class Bullet final : public Sprite {
         Bullet(short x, short y, SDL_Renderer* renderer);
         short dx; 
         short dy;
+        float speed = 0.4f;
         bool destroyed = false; 
 
         void draw() override;
