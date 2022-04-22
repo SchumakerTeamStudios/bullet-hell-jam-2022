@@ -50,6 +50,7 @@ Bullet Enemy::fire() {
     bullet.setTexture(shootTexture);
     bullet.dx = pec.dx;
     bullet.dy = pec.dy;
+    bullet.speed = pec.speed;
 
     bullet.setWidth(32); 
     bullet.setHeight(32);
