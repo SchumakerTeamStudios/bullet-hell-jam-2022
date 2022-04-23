@@ -12,15 +12,11 @@ Sprite::Sprite(short x, short y, short w, short h) : position(Vector2d(x, y)), s
 Sprite::Sprite(Vector2d p, Dimension s) : position(p), size(s) {}
 
 void Sprite::setTexture(SDL_Texture* spr) {
-	//SDL_Point point;
-    //SDL_QueryTexture(spr, NULL, NULL, &point.x, &point.y);
 	sprite = spr; 
-    //size.w = point.x; 
-    //size.h = point.y;
 }
 
 BoxCollider2d Sprite::getCollider() {
-    return BoxCollider2d(position, size);
+    return BoxCollider2d(colliderOffset, colliderSize);
 }
 
 Dimension Sprite::getBounds() {

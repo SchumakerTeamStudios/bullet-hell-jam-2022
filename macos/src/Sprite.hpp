@@ -13,6 +13,8 @@ class Sprite {
     protected:
         Vector2d position;
         Dimension size;
+        Vector2d colliderOffset;
+        Dimension colliderSize;
         SDL_Texture* sprite;
         
     public:

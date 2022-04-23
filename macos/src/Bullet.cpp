@@ -25,6 +25,8 @@ void Bullet::draw() {
         rect.h = size.h;
 
         SDL_RenderCopy(renderer, sprite, &origin, &rect);
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+        SDL_RenderDrawRect(renderer, &rect);
     }
 }
 
