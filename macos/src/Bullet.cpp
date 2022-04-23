@@ -23,13 +23,14 @@ void Bullet::draw() {
         rect.y = position.y;
         rect.w = size.w;
         rect.h = size.h;
-
         SDL_RenderCopy(renderer, sprite, &origin, &rect);
+        
+        BoxCollider2d box = getCollider();
         SDL_Rect collider; 
-        collider.x = colliderOffset.x;
-        collider.y = colliderOffset.y;
-        collider.w = colliderSize.w;
-        collider.h = colliderSize.h;
+        collider.x = box.getX();
+        collider.y = box.getY();
+        collider.w = box.getWidth();
+        collider.h = box.getHeight();
 
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
         SDL_RenderDrawRect(renderer, &collider);
@@ -39,8 +40,6 @@ void Bullet::draw() {
 void Bullet::move(float deltaTime) {
     position.x += dx * speed * deltaTime;
     position.y += dy * speed * deltaTime;
-    colliderOffset.x = position.x + 10;
-    colliderOffset.y = position.y + 10;
 }
 
 bool Bullet::isExpired() {

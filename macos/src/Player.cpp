@@ -80,7 +80,7 @@ void Player::draw() {
     collider.w = box.getWidth();
     collider.h = box.getHeight();
 
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
     SDL_RenderDrawRect(renderer, &collider);
 }
 
@@ -95,13 +95,12 @@ Bullet Player::fire() {
     bullet.setWidth(32); 
     bullet.setHeight(32);
 
-    bullet.colliderOffset.x = 5;
-    bullet.colliderOffset.y = 5;
+    bullet.colliderOffset.x = 0;
+    bullet.colliderOffset.y = 25;
     bullet.colliderSize.w = 4;
-    bullet.colliderSize.h = 8;
+    bullet.colliderSize.h = 4;
 
     Mix_PlayChannel(-1, shootSfx, 0);
-
     return bullet;
 }
 
@@ -115,8 +114,13 @@ Bullet Player::fireLeft() {
 
     bullet.setWidth(32); 
     bullet.setHeight(32);
-    Mix_PlayChannel(-1, shootSfx, 0);
 
+    bullet.colliderOffset.x = 25;
+    bullet.colliderOffset.y = 13;
+    bullet.colliderSize.w = 4;
+    bullet.colliderSize.h = 4;
+
+    Mix_PlayChannel(-1, shootSfx, 0);
     return bullet;
 }
 
@@ -130,8 +134,13 @@ Bullet Player::fireRight() {
 
     bullet.setWidth(32); 
     bullet.setHeight(32);
-    Mix_PlayChannel(-1, shootSfx, 0);
+    
+    bullet.colliderOffset.x = 5;
+    bullet.colliderOffset.y = 13;
+    bullet.colliderSize.w = 4;
+    bullet.colliderSize.h = 4;
 
+    Mix_PlayChannel(-1, shootSfx, 0);
     return bullet;
 }
 

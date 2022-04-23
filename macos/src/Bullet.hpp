@@ -23,7 +23,7 @@ class Bullet final : public Sprite {
         Bullet(short x, short y, SDL_Renderer* renderer);
         float dx; 
         float dy;
-        float speed = 0.4f;
+        float speed = 0.1f;
         bool destroyed = false; 
 
         void draw() override;
