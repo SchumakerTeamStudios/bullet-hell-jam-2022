@@ -28,7 +28,7 @@ void setUp() {
     SDL_SetWindowIcon(window, iconSurface);
 
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);   
-   // Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 256);
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 256);
 }
 
 void quit() {

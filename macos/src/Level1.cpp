@@ -122,7 +122,7 @@ void Level1::update() {
 }
 
 void Level1::collision() {
-     for (auto& bullet : bullets) {
+    for (auto& bullet : bullets) {
         for (auto& o: enemies) {
             if (BoxCollider2d::collide(bullet.getCollider(), o.getCollider())) {
                 o.hp--;
