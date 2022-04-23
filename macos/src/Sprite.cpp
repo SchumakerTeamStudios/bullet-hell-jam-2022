@@ -16,7 +16,8 @@ void Sprite::setTexture(SDL_Texture* spr) {
 }
 
 BoxCollider2d Sprite::getCollider() {
-    return BoxCollider2d(colliderOffset, colliderSize);
+    Vector2d  colliderPosition = { position.x + colliderOffset.x, position.y + colliderOffset.y };  
+    return BoxCollider2d(colliderPosition, colliderSize);
 }
 
 Dimension Sprite::getBounds() {

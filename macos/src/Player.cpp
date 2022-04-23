@@ -57,8 +57,7 @@ void Player::move(short dx, short dy, float deltaTime) {
 }
 
 void Player::update(float deltaTime) {
-    colliderOffset.x = position.x + 10;
-    colliderOffset.y = position.y + 10;
+
 }
 
 void Player::draw() {
@@ -74,13 +73,13 @@ void Player::draw() {
 
     SDL_RenderCopy(renderer, sprite, &origin, &rect);
 
+    BoxCollider2d box = getCollider();
     SDL_Rect collider; 
-    collider.x = colliderOffset.x;
-    collider.y = colliderOffset.y;
-    collider.w = colliderSize.w;
-    collider.h = colliderSize.h;
+    collider.x = box.getX();
+    collider.y = box.getY();
+    collider.w = box.getWidth();
+    collider.h = box.getHeight();
 
-      
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
     SDL_RenderDrawRect(renderer, &collider);
 }
@@ -95,6 +94,12 @@ Bullet Player::fire() {
 
     bullet.setWidth(32); 
     bullet.setHeight(32);
+
+    bullet.colliderOffset.x = 5;
+    bullet.colliderOffset.y = 5;
+    bullet.colliderSize.w = 4;
+    bullet.colliderSize.h = 8;
+
     Mix_PlayChannel(-1, shootSfx, 0);
 
     return bullet;
@@ -140,8 +145,8 @@ void Player::init() {
 
     currentAnimation = &idleAnimation;
 
-    colliderOffset.x = position.x + 10;
-    colliderOffset.y = position.y + 10;
+    colliderOffset.x = 10;
+    colliderOffset.y = 10;
     colliderSize.w = 34;
     colliderSize.h = 40;
 }

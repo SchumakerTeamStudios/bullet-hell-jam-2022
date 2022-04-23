@@ -13,8 +13,6 @@ class Sprite {
     protected:
         Vector2d position;
         Dimension size;
-        Vector2d colliderOffset;
-        Dimension colliderSize;
         SDL_Texture* sprite;
         
     public:
@@ -27,7 +25,10 @@ class Sprite {
 	    Dimension getBounds();
         BoxCollider2d getCollider();
 	    void setTexture(SDL_Texture* spr);
-		
+
+		Vector2d colliderOffset;
+        Dimension colliderSize;
+
         short getX() const;
 	    void setX(short x);
 
