@@ -42,10 +42,16 @@ void Enemy::draw() {
         rect.y = position.y;
         rect.w = size.w;
         rect.h = size.h;
-
         SDL_RenderCopy(renderer, sprite, &origin, &rect);
+        
+        BoxCollider2d box = getCollider();
+        SDL_Rect collider; 
+        collider.x = box.getX();
+        collider.y = box.getY();
+        collider.w = box.getWidth();
+        collider.h = box.getHeight();
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-        SDL_RenderDrawRect(renderer, &rect);
+        SDL_RenderDrawRect(renderer, &collider);
     }
 }
 
@@ -68,6 +74,11 @@ Bullet Enemy::fire(ProjectileEmitterComponent* pec) {
 
 void Enemy::init() {
     animation = AnimationComponent(2, 4, true);
+    colliderOffset.x = 10;
+    colliderOffset.y = 10;
+    colliderSize.w = 45;
+    colliderSize.h = 40;
+
     load();
 }
 
