@@ -54,6 +54,8 @@ void Enemy::draw() {
         rect.y = position.y;
         rect.w = size.w;
         rect.h = size.h;
+        
+        if (hp < 50) SDL_SetTextureColorMod(sprite, 255, 0, 0);
         SDL_RenderCopy(renderer, sprite, &origin, &rect);
         
         BoxCollider2d box = getCollider();

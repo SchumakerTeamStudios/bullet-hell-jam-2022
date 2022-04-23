@@ -81,6 +81,12 @@ void Level1::update() {
 	currentTick = SDL_GetPerformanceCounter();
 	deltaTime = (float)((currentTick - lastTick) * 1000.0f / (float)SDL_GetPerformanceFrequency());
 
+    for (int i = 0; i < enemies.size(); i++) {
+        if (enemies.at(i).hp < 0) {
+            enemies.erase(enemies.begin() + i); 
+        }
+    }
+
     for (int i = 0; i < bullets.size(); i++) {
         if (bullets.at(i).isExpired() || bullets.at(i).destroyed) {
             bullets.erase(bullets.begin() + i); 
@@ -107,7 +113,7 @@ void Level1::update() {
         }
     }
 
-    for(auto& e : enemies) {
+    for (auto& e : enemies) {
         e.update(deltaTime, &enemiesBullets);
         e.move(deltaTime);
     }
@@ -119,6 +125,7 @@ void Level1::collision() {
      for (auto& bullet : bullets) {
         for (auto& o: enemies) {
             if (BoxCollider2d::collide(bullet.getCollider(), o.getCollider())) {
+                o.hp--;
                 bullet.destroyed = true;
                 hits.push_back(Hit(bullet.getX(), bullet.getY(), renderer));
                 Mix_PlayChannel(-1, explodeSfx, 0);
@@ -130,7 +137,6 @@ void Level1::collision() {
 void Level1::render() {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
-    
     SDL_RenderCopy(renderer, background, NULL, &rectBackground);
 
     for (auto& o : enemies) {
@@ -157,29 +163,29 @@ void Level1::render() {
 void Level1::load() {
     SDL_Surface* backgroundSurface = IMG_Load("data/back1s1.png");
     background = SDL_CreateTextureFromSurface(renderer, backgroundSurface); 
-
     explodeSfx = Mix_LoadWAV("data/explode.mp3");
 
-    Enemy object = Enemy(400, 40, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
+    Enemy skullOrb = Enemy(400, 40, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
+    skullOrb.hp = 100;
     ProjectileEmitterComponent pec = ProjectileEmitterComponent(1, 1);
     pec.speed = 0.3f;
     pec.angle = 15;
     pec.repeatFrequency = 1000;
-    object.pecs.push_back(pec);
+    skullOrb.pecs.push_back(pec);
 
     ProjectileEmitterComponent pec2 = ProjectileEmitterComponent(-1, 1);
     pec2.speed = 0.3f;
     pec2.angle = 15;
     pec2.repeatFrequency = 1000;
-    object.pecs.push_back(pec2);
+    skullOrb.pecs.push_back(pec2);
 
     ProjectileEmitterComponent pec3 = ProjectileEmitterComponent(-1, 1);
     pec3.speed = 0.2f;
     pec3.angle = 90;
     pec3.repeatFrequency = 875;
-    object.pecs.push_back(pec3);
+    skullOrb.pecs.push_back(pec3);
 
-    enemies.push_back(object);  
+    enemies.push_back(skullOrb);  
 
     //Enemy object2 = Enemy(480, 80, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
     //enemies.push_back(object2);
