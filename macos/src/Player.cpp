@@ -81,7 +81,7 @@ void Player::draw() {
     collider.h = box.getHeight();
 
     SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-    SDL_RenderDrawRect(renderer, &collider);
+    //SDL_RenderDrawRect(renderer, &collider);
 }
 
 Bullet Player::fire() {

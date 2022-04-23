@@ -21,13 +21,13 @@ class Sprite {
         Sprite(short x, short y, short w, short h);
         Sprite(Vector2d p, Dimension s);
 
+        Vector2d colliderOffset;
+        Dimension colliderSize;
+
         virtual void draw() = 0;
 	    Dimension getBounds();
         BoxCollider2d getCollider();
 	    void setTexture(SDL_Texture* spr);
-
-		Vector2d colliderOffset;
-        Dimension colliderSize;
 
         short getX() const;
 	    void setX(short x);

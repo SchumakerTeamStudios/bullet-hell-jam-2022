@@ -19,7 +19,19 @@ Enemy::Enemy(short x, short y, short w, short h, std::string sprtName, std::stri
 }
 
 void Enemy::move(float deltaTime) {
+    if (position.x < 660 && right) {
+        position.x += 0.15f * deltaTime;
+        if (position.x > 660) {
+            right = false;
+        }
 
+    } 
+    if (!right) {
+        position.x -= 0.15f * deltaTime;
+        if (position.x < 85) {
+            right = true;
+        }
+    }
 }
 
 void Enemy::update(float deltaTime, std::vector<Bullet>* bullets) { 
@@ -32,7 +44,7 @@ void Enemy::update(float deltaTime, std::vector<Bullet>* bullets) {
 }
 
 void Enemy::draw() {
-   if (!destroyed) {
+    if (!destroyed) {
         animation.currentFrame = ((SDL_GetTicks() - animation.startTime) 
             * animation.frameSpeedRate / 1000) % animation.numFrames;
     
@@ -51,12 +63,12 @@ void Enemy::draw() {
         collider.w = box.getWidth();
         collider.h = box.getHeight();
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-        SDL_RenderDrawRect(renderer, &collider);
+        //SDL_RenderDrawRect(renderer, &collider);
     }
 }
 
 Bullet Enemy::fire(ProjectileEmitterComponent* pec) {
-    Bullet bullet = Bullet(position.x + 17, position.y +32, renderer);
+    Bullet bullet = Bullet(position.x + 17, position.y + 32, renderer);
     bullet.setTexture(shootTexture);
     bullet.colliderOffset.x = 12;
     bullet.colliderOffset.y = 12;
@@ -67,7 +79,7 @@ Bullet Enemy::fire(ProjectileEmitterComponent* pec) {
     float dy = sin(pec->angle * PI / 180.0f);
     bullet.dx = dx * pec->dx;
     bullet.dy = dy * pec->dy;
-    bullet.speed = 0.1;//pec->speed;
+    bullet.speed = pec->speed;
 
     bullet.setWidth(32); 
     bullet.setHeight(32);

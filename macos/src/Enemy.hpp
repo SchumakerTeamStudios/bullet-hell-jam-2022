@@ -34,5 +34,6 @@ class Enemy final : public Sprite {
         void load();
         void unload();    
         int hp; 
+        bool right = true;
         std::vector<ProjectileEmitterComponent> pecs; 
 };
