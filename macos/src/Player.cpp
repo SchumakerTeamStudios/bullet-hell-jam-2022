@@ -57,7 +57,8 @@ void Player::move(short dx, short dy, float deltaTime) {
 }
 
 void Player::update(float deltaTime) {
-    // std::cout << bullets.size() << std::endl;
+    colliderOffset.x = position.x + 10;
+    colliderOffset.y = position.y + 10;
 }
 
 void Player::draw() {
@@ -73,9 +74,15 @@ void Player::draw() {
 
     SDL_RenderCopy(renderer, sprite, &origin, &rect);
 
+    SDL_Rect collider; 
+    collider.x = colliderOffset.x;
+    collider.y = colliderOffset.y;
+    collider.w = colliderSize.w;
+    collider.h = colliderSize.h;
+
       
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-    SDL_RenderDrawRect(renderer, &rect);
+    SDL_RenderDrawRect(renderer, &collider);
 }
 
 Bullet Player::fire() {
@@ -132,6 +139,11 @@ void Player::init() {
     shootUpAnimation = AnimationComponent(4, 6, true);
 
     currentAnimation = &idleAnimation;
+
+    colliderOffset.x = position.x + 10;
+    colliderOffset.y = position.y + 10;
+    colliderSize.w = 34;
+    colliderSize.h = 40;
 }
 
 void Player::load() {
