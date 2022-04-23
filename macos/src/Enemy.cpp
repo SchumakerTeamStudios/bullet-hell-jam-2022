@@ -58,12 +58,16 @@ void Enemy::draw() {
 Bullet Enemy::fire(ProjectileEmitterComponent* pec) {
     Bullet bullet = Bullet(position.x + 17, position.y +32, renderer);
     bullet.setTexture(shootTexture);
+    bullet.colliderOffset.x = 12;
+    bullet.colliderOffset.y = 12;
+    bullet.colliderSize.w = 7;
+    bullet.colliderSize.h = 7;
 
     float dx = cos(pec->angle * PI / 180.0f);
     float dy = sin(pec->angle * PI / 180.0f);
     bullet.dx = dx * pec->dx;
     bullet.dy = dy * pec->dy;
-    bullet.speed = pec->speed;
+    bullet.speed = 0.1;//pec->speed;
 
     bullet.setWidth(32); 
     bullet.setHeight(32);
