@@ -9,6 +9,7 @@
 #include "Splash.hpp"
 #include "Menu.hpp"
 #include "Level1.hpp"
+#include "Level2.hpp"
 
 SDL_Window* window;
 SDL_Renderer* renderer;
@@ -66,22 +67,29 @@ void levels() {
             break;
         
         case 2:
-            quit();
+            stage = loadLevel2();
             break;
         }
     }
 }
 
 int loadMenu() {
-    Menu menu = Menu(renderer);
-    return menu.update();
+    Menu* menu = new Menu(renderer);
+    int code = menu->update();
+    delete menu;
+    return code;
 }
 
 int loadLevel1() {
-    Level1 level = Level1(renderer);
-    return level.loop();
+    Level1* level = new Level1(renderer);
+    int code = level->loop();
+    delete level;
+    return code;
 }
 
 int loadLevel2() {
-    return 1;
+    Level2* level = new Level2(renderer);
+    int code = level->loop();
+    delete level;
+    return code;
 }

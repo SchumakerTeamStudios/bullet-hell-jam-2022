@@ -6,6 +6,7 @@
 
 #pragma once
 #include "Common.hpp"
+#include "Enemy.hpp"
 
 class Canvas {
 

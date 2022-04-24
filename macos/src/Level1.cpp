@@ -184,7 +184,7 @@ void Level1::load() {
     explodeSfx = Mix_LoadWAV("data/explode.mp3");
 
     Enemy skullOrb = Enemy(400, 40, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
-    skullOrb.hp = 85;
+    skullOrb.hp = 5;
    
     ProjectileEmitterComponent pec = ProjectileEmitterComponent(1, 1);
     pec.speed = 0.3f;

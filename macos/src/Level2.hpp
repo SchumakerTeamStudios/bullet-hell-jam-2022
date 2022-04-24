@@ -7,7 +7,6 @@
 #pragma once
 #include "Bullet.hpp"
 #include "Canvas.hpp"
-#include "Enemy.hpp"
 #include "Hit.hpp"
 #include "Player.hpp"
 
