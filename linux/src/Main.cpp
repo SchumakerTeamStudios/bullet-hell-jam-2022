@@ -27,7 +27,7 @@ void setUp() {
         Common::TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         Common::WIDTH,
         Common::HEIGHT,
-        SDL_WINDOW_SHOWN | SDL_WINDOW_METAL 
+        SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL  
     );
     
     SDL_Surface* iconSurface = IMG_Load("data/joypad.png");
