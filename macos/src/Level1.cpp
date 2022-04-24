@@ -26,7 +26,7 @@ bool Level1::loop() {
         collision();
         render(); 
     }
-    return true;
+    return win;
 }
 
 void Level1::input() {
@@ -81,6 +81,9 @@ void Level1::update() {
 	currentTick = SDL_GetPerformanceCounter();
 	deltaTime = (float)((currentTick - lastTick) * 1000.0f / (float)SDL_GetPerformanceFrequency());
 
+    if (enemies.size() == 0) isRunning = false; win = true;
+    if (player.hp <= 0) isRunning = false; win = false;
+    
     for (int i = 0; i < enemies.size(); i++) {
         if (enemies.at(i).hp < 0) {
             enemies.erase(enemies.begin() + i); 
@@ -118,7 +121,8 @@ void Level1::update() {
         e.move(deltaTime);
     }
 
-    player.update(deltaTime);
+    if (player.hp > 0) player.update(deltaTime);
+    
 }
 
 void Level1::collision() {
@@ -132,6 +136,15 @@ void Level1::collision() {
             }
         }
     }
+
+    for (auto& bullet : enemiesBullets) {
+        if (BoxCollider2d::collide(bullet.getCollider(), player.getCollider())) {
+            player.hp--;
+            bullet.destroyed = true;
+            //hits.push_back(Hit(bullet.getX(), bullet.getY(), renderer));
+            Mix_PlayChannel(-1, explodeSfx, 0);
+        }
+    }
 }
 
 void Level1::render() {
@@ -143,7 +156,7 @@ void Level1::render() {
         o.draw();
     }
 
-    player.draw();
+    if (player.hp > 0) player.draw();
 
     for (auto& bullet : bullets) {
         bullet.draw();

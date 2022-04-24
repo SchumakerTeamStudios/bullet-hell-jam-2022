@@ -21,6 +21,7 @@ class Level1 final : public Canvas {
         Mix_Chunk* explodeSfx;
 
         bool isRunning = false;
+        bool win = false;
         Uint64 currentTick = 0;
         Uint64 lastTick = 0;
         float deltaTime = 0.0f;

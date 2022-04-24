@@ -13,6 +13,9 @@
 SDL_Window* window;
 SDL_Renderer* renderer;
 
+void loadMenu();
+bool loadLevel1();
+
 void setUp() {
     SDL_Init(SDL_INIT_EVERYTHING);
     TTF_Init();
@@ -42,12 +45,22 @@ int main(int argc, char* argv[]) {
     Splash* splash = new Splash(renderer);
     delete splash;
 
-    Menu* menu = new Menu(renderer);
-    delete menu;
+    loadMenu();
 
-    Level1* level = new Level1(renderer);
-    level->loop();
+    if (!loadLevel1()) {
+        loadMenu();
+    } 
 
     quit();
     return 0;
+}
+
+void loadMenu() {
+    Menu menu = Menu(renderer);
+}
+
+
+bool loadLevel1() {
+    Level1 level = Level1(renderer);
+    return level.loop();
 }

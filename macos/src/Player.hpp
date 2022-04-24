@@ -48,5 +48,8 @@ class Player final : public Sprite {
         Bullet fireRight();
         void init();
         void load();
+        void drawCollider();
         void unload();
+
+        int hp = 10;
 };

@@ -73,15 +73,7 @@ void Player::draw() {
 
     SDL_RenderCopy(renderer, sprite, &origin, &rect);
 
-    BoxCollider2d box = getCollider();
-    SDL_Rect collider; 
-    collider.x = box.getX();
-    collider.y = box.getY();
-    collider.w = box.getWidth();
-    collider.h = box.getHeight();
-
-    SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-    //SDL_RenderDrawRect(renderer, &collider);
+    //drawCollider();
 }
 
 Bullet Player::fire() {
@@ -158,6 +150,18 @@ void Player::init() {
     colliderOffset.y = 10;
     colliderSize.w = 34;
     colliderSize.h = 40;
+}
+
+void Player::drawCollider() {
+    BoxCollider2d box = getCollider();
+    SDL_Rect collider; 
+    collider.x = box.getX();
+    collider.y = box.getY();
+    collider.w = box.getWidth();
+    collider.h = box.getHeight();
+
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_RenderDrawRect(renderer, &collider);
 }
 
 void Player::load() {
