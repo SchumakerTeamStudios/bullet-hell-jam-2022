@@ -21,7 +21,7 @@ class Level1 final : public Canvas {
         Mix_Chunk* explodeSfx;
 
         bool isRunning = false;
-        bool win = false;
+        int win = 0;
         Uint64 currentTick = 0;
         Uint64 lastTick = 0;
         float deltaTime = 0.0f;
@@ -42,5 +42,5 @@ class Level1 final : public Canvas {
         Level1(SDL_Renderer* renderer);
         ~Level1();
 
-        bool loop() override;
+        int loop() override;
 };

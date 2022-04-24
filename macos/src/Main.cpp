@@ -13,8 +13,10 @@
 SDL_Window* window;
 SDL_Renderer* renderer;
 
-void loadMenu();
-bool loadLevel1();
+void levels();
+int loadMenu();
+int loadLevel1();
+int loadLevel2();
 
 void setUp() {
     SDL_Init(SDL_INIT_EVERYTHING);
@@ -45,22 +47,41 @@ int main(int argc, char* argv[]) {
     Splash* splash = new Splash(renderer);
     delete splash;
 
-    loadMenu();
-
-    if (!loadLevel1()) {
-        loadMenu();
-    } 
+    levels();
 
     quit();
     return 0;
 }
 
-void loadMenu() {
-    Menu menu = Menu(renderer);
+void levels() {
+    short stage = 0;
+    for(;;) {
+        switch(stage) {
+        case 0:
+            stage = loadMenu();         
+            break;
+
+        case 1:
+            stage = loadLevel1();
+            break;
+        
+        case 2:
+            quit();
+            break;
+        }
+    }
 }
 
+int loadMenu() {
+    Menu menu = Menu(renderer);
+    return menu.update();
+}
 
-bool loadLevel1() {
+int loadLevel1() {
     Level1 level = Level1(renderer);
     return level.loop();
+}
+
+int loadLevel2() {
+    return 1;
 }

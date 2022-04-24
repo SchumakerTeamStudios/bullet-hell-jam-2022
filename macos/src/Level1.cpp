@@ -16,7 +16,7 @@ Level1::~Level1() {
     unload();
 }
 
-bool Level1::loop() {
+int Level1::loop() {
     isRunning = true;
     currentTick = SDL_GetPerformanceCounter();
 
@@ -51,27 +51,26 @@ void Level1::input() {
     SDL_Event e;
     while(SDL_PollEvent(&e)) {
       switch(e.type) {
-          case SDL_QUIT:
-              isRunning = false;
-              exit(0);
-          break;
+            case SDL_QUIT:
+                isRunning = false;
+                exit(0);
+            break;
       
-          case SDL_KEYDOWN:
-              if (e.key.keysym.sym == SDLK_s) {
-                  bullets.push_back(player.fire());
-              }
-              if (e.key.keysym.sym == SDLK_a) {
-                  bullets.push_back(player.fireLeft());
-              }
-              if (e.key.keysym.sym == SDLK_d) {
-                  bullets.push_back(player.fireRight());
-              }
-            
-          break;
+            case SDL_KEYDOWN:
+                if (e.key.keysym.sym == SDLK_s) {
+                    bullets.push_back(player.fire());
+                }
+                if (e.key.keysym.sym == SDLK_a) {
+                    bullets.push_back(player.fireLeft());
+                }
+                if (e.key.keysym.sym == SDLK_d) {
+                    bullets.push_back(player.fireRight());
+                }
+            break;
 
-          case SDL_KEYUP:
-              player.move(0, 0, deltaTime);
-          break;
+            case SDL_KEYUP:
+                player.move(0, 0, deltaTime);
+            break;
         }
     }    
 }
@@ -81,8 +80,15 @@ void Level1::update() {
 	currentTick = SDL_GetPerformanceCounter();
 	deltaTime = (float)((currentTick - lastTick) * 1000.0f / (float)SDL_GetPerformanceFrequency());
 
-    if (enemies.size() == 0) isRunning = false; win = true;
-    if (player.hp <= 0) isRunning = false; win = false;
+    if (enemies.size() == 0) {
+        isRunning = false; 
+        win = 2;  
+    } 
+    
+    if (player.hp <= 0) {
+        isRunning = false; 
+        win = 0;
+    } 
     
     for (int i = 0; i < enemies.size(); i++) {
         if (enemies.at(i).hp < 0) {
@@ -122,7 +128,6 @@ void Level1::update() {
     }
 
     if (player.hp > 0) player.update(deltaTime);
-    
 }
 
 void Level1::collision() {
@@ -179,7 +184,8 @@ void Level1::load() {
     explodeSfx = Mix_LoadWAV("data/explode.mp3");
 
     Enemy skullOrb = Enemy(400, 40, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
-    skullOrb.hp = 100;
+    skullOrb.hp = 5;
+   
     ProjectileEmitterComponent pec = ProjectileEmitterComponent(1, 1);
     pec.speed = 0.3f;
     pec.angle = 15;
