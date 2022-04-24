@@ -57,7 +57,7 @@ void Player::move(short dx, short dy, float deltaTime) {
 }
 
 void Player::update(float deltaTime) {
-    //std::cout << bullets.size() << std::endl;
+
 }
 
 void Player::draw() {
@@ -72,17 +72,67 @@ void Player::draw() {
     rect.h = size.h;
 
     SDL_RenderCopy(renderer, sprite, &origin, &rect);
+
+    //drawCollider();
 }
 
 Bullet Player::fire() {
+    setTexture(shootUpTexture);
+    currentAnimation = &shootUpAnimation;
     Bullet bullet = Bullet(position.x + 26, position.y - 18, renderer);
-    bullet.setTexture(shoot);
+    bullet.setTexture(bulletTexture);
     bullet.dx = 0;
     bullet.dy = -1;
 
     bullet.setWidth(32); 
     bullet.setHeight(32);
 
+    bullet.colliderOffset.x = 0;
+    bullet.colliderOffset.y = 25;
+    bullet.colliderSize.w = 4;
+    bullet.colliderSize.h = 4;
+
+    Mix_PlayChannel(-1, shootSfx, 0);
+    return bullet;
+}
+
+Bullet Player::fireLeft() {
+    setTexture(shootLeftTexture);
+    currentAnimation = &shootLeftAnimation;
+    Bullet bullet = Bullet(position.x - 11, position.y + 14, renderer);
+    bullet.setTexture(bulletLeftTexture);
+    bullet.dx = -1;
+    bullet.dy = 0;
+
+    bullet.setWidth(32); 
+    bullet.setHeight(32);
+
+    bullet.colliderOffset.x = 25;
+    bullet.colliderOffset.y = 13;
+    bullet.colliderSize.w = 4;
+    bullet.colliderSize.h = 4;
+
+    Mix_PlayChannel(-1, shootSfx, 0);
+    return bullet;
+}
+
+Bullet Player::fireRight() {
+    setTexture(shootRightTexture);
+    currentAnimation = &shootRightAnimation;
+    Bullet bullet = Bullet(position.x + 36, position.y + 14, renderer);
+    bullet.setTexture(bulletRightTexture);
+    bullet.dx = 1;
+    bullet.dy = 0;
+
+    bullet.setWidth(32); 
+    bullet.setHeight(32);
+    
+    bullet.colliderOffset.x = 5;
+    bullet.colliderOffset.y = 13;
+    bullet.colliderSize.w = 4;
+    bullet.colliderSize.h = 4;
+
+    Mix_PlayChannel(-1, shootSfx, 0);
     return bullet;
 }
 
@@ -95,6 +145,23 @@ void Player::init() {
     shootUpAnimation = AnimationComponent(4, 6, true);
 
     currentAnimation = &idleAnimation;
+
+    colliderOffset.x = 10;
+    colliderOffset.y = 10;
+    colliderSize.w = 34;
+    colliderSize.h = 40;
+}
+
+void Player::drawCollider() {
+    BoxCollider2d box = getCollider();
+    SDL_Rect collider; 
+    collider.x = box.getX();
+    collider.y = box.getY();
+    collider.w = box.getWidth();
+    collider.h = box.getHeight();
+
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_RenderDrawRect(renderer, &collider);
 }
 
 void Player::load() {
@@ -117,8 +184,16 @@ void Player::load() {
     SDL_Surface* shootUpSurface = IMG_Load("data/shootup.png");
     shootUpTexture = SDL_CreateTextureFromSurface(renderer, shootUpSurface);
 
-    SDL_Surface* shootSurface = IMG_Load("data/shoot4.png");
-    shoot = SDL_CreateTextureFromSurface(renderer, shootSurface);
+    SDL_Surface* bulletSurface = IMG_Load("data/shoot4.png");
+    bulletTexture = SDL_CreateTextureFromSurface(renderer, bulletSurface);
+
+    SDL_Surface* bulletLeftSurface = IMG_Load("data/shoot1.png");
+    bulletLeftTexture = SDL_CreateTextureFromSurface(renderer, bulletLeftSurface);
+
+    SDL_Surface* bulletRightSurface = IMG_Load("data/shoot2.png");
+    bulletRightTexture = SDL_CreateTextureFromSurface(renderer, bulletRightSurface);
+
+    shootSfx = Mix_LoadWAV("data/laser.mp3");
 
     SDL_FreeSurface(idleSurface);
     SDL_FreeSurface(moveLeftSurface);
@@ -126,7 +201,9 @@ void Player::load() {
     SDL_FreeSurface(shootLeftSurface);
     SDL_FreeSurface(shootRightSurface);
     SDL_FreeSurface(shootUpSurface);
-    SDL_FreeSurface(shootSurface);
+    SDL_FreeSurface(bulletSurface);
+    SDL_FreeSurface(bulletLeftSurface);
+    SDL_FreeSurface(bulletRightSurface);
 }
 
 void Player::unload() {
@@ -136,4 +213,8 @@ void Player::unload() {
     SDL_DestroyTexture(shootLeftTexture);
     SDL_DestroyTexture(shootRightTexture);
     SDL_DestroyTexture(shootUpTexture);
+    SDL_DestroyTexture(bulletTexture);
+    SDL_DestroyTexture(bulletLeftTexture);
+    SDL_DestroyTexture(bulletRightTexture);
+    Mix_FreeChunk(shootSfx);
 }

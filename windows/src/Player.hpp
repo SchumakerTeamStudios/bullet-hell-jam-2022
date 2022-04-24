@@ -29,7 +29,11 @@ class Player final : public Sprite {
         SDL_Texture* shootLeftTexture;
         SDL_Texture* shootRightTexture;
         SDL_Texture* shootUpTexture;
-        SDL_Texture* shoot;
+        SDL_Texture* bulletTexture;
+        SDL_Texture* bulletLeftTexture;
+        SDL_Texture* bulletRightTexture;
+
+        Mix_Chunk* shootSfx;
 
     public:
         Player();
@@ -40,7 +44,12 @@ class Player final : public Sprite {
         void update(float deltaTime);
         void draw() override;
         Bullet fire();
+        Bullet fireLeft();
+        Bullet fireRight();
         void init();
         void load();
+        void drawCollider();
         void unload();
+
+        int hp = 10;
 };

@@ -29,7 +29,6 @@ class Menu final {
         const short offset = 30;
         
         void load();  
-        void update();
         void render();
         void input();
         void unload();  
@@ -38,4 +37,5 @@ class Menu final {
         Menu(SDL_Renderer* renderer);
         ~Menu();
 
+        int update();
 };

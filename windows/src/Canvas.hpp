@@ -6,6 +6,7 @@
 
 #pragma once
 #include "Common.hpp"
+#include "Enemy.hpp"
 
 class Canvas {
 
@@ -19,7 +20,7 @@ class Canvas {
         Canvas();
         Canvas(int w, int h);
 
-        virtual bool loop() = 0;
+        virtual int loop() = 0;
         virtual void input() = 0; 
         virtual void update() = 0;
         virtual void collision() = 0;

@@ -9,31 +9,24 @@
 #include "Sprite.hpp"
 #include "AnimationComponent.hpp"
 
-class Bullet final : public Sprite {
+class Hit final : public Sprite {
 
     private:
         SDL_Renderer* renderer;
         AnimationComponent animation;
+        bool destroyed = false;
 
-        int duration = 2048;
+        int duration = 256;
         int startTime;
-        
+
     public:
-        Bullet();
-        Bullet(short x, short y, SDL_Renderer* renderer);
-        ~Bullet();
-
-        float dx; 
-        float dy;
-        float speed = 0.4f;
-        bool destroyed = false; 
-
+        Hit();
+        Hit(short x, short y, SDL_Renderer* renderer);
         void draw() override;
         void move(float deltaTime);
         bool isExpired();
         void init();
-        float getSpeed() const;
-        void setSpeed(float s);
+        void load();
         int getDuration() const;
         void setDuration(int d);
 };
