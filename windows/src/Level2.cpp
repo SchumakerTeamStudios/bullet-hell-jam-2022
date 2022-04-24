@@ -90,19 +90,19 @@ void Level2::update() {
         win = 0;
     } 
     
-    for (int i = 0; i < enemies.size(); i++) {
+    for (long i = 0; i < enemies.size(); i++) {
         if (enemies.at(i).hp < 0) {
             enemies.erase(enemies.begin() + i); 
         }
     }
 
-    for (int i = 0; i < bullets.size(); i++) {
+    for (long i = 0; i < bullets.size(); i++) {
         if (bullets.at(i).isExpired() || bullets.at(i).destroyed) {
             bullets.erase(bullets.begin() + i); 
         }
     }
 
-    for (int i = 0; i < enemiesBullets.size(); i++) {
+    for (long i = 0; i < enemiesBullets.size(); i++) {
         if (enemiesBullets.at(i).isExpired() || enemiesBullets.at(i).destroyed) {
             enemiesBullets.erase(enemiesBullets.begin() + i); 
         }
