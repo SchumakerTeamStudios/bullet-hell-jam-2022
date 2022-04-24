@@ -55,7 +55,7 @@ int main(int argc, char* argv[]) {
 }
 
 void levels() {
-    short stage = 2;
+    short stage = 0;
     for(;;) {
         switch(stage) {
         case 0:
