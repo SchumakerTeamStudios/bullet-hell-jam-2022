@@ -15,7 +15,6 @@ class Level2 final : public Canvas {
     private:
         SDL_Renderer* renderer;
         SDL_Texture* background;
-        SDL_Texture* water;
 
         SDL_Rect rectBackground = { 0, 0, 800, 600 };
         Player player;

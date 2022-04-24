@@ -185,7 +185,9 @@ void Level1::load() {
     explodeSfx = Mix_LoadWAV("data/explode.mp3");
 
     Enemy skullOrb = Enemy(400, 40, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
-    skullOrb.hp = 5;
+    skullOrb.hp = 89;
+    skullOrb.fireOffsetX = 17;
+    skullOrb.fireOffsetY = 32;
    
     ProjectileEmitterComponent pec = ProjectileEmitterComponent(1, 1);
     pec.speed = 0.3f;
@@ -206,15 +208,6 @@ void Level1::load() {
     skullOrb.pecs.push_back(pec3);
 
     enemies.push_back(skullOrb);  
-
-    //Enemy object2 = Enemy(480, 80, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
-    //enemies.push_back(object2);
-
-    //Enemy object3 = Enemy(480, 120, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
-    //enemies.push_back(object3);  
-
-    //Enemy object4 = Enemy(120, 160, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
-    //enemies.push_back(object4);  
 }
 
 void Level1::unload() {

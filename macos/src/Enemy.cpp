@@ -19,17 +19,34 @@ Enemy::Enemy(short x, short y, short w, short h, std::string sprtName, std::stri
 }
 
 void Enemy::move(float deltaTime) {
-    if (position.x < 660 && right) {
-        position.x += 0.15f * deltaTime;
-        if (position.x > 660) {
-            right = false;
+    if (type == 0) {
+        if (position.x < 660 && back) {
+            position.x += 0.15f * deltaTime;
+            if (position.x > 660) {
+                back = false;
+            }
         }
+        if (!back) {
+            position.x -= 0.15f * deltaTime;
+            if (position.x < 85) {
+                back = true;
+            }
+        }
+        return;
+    }
 
-    } 
-    if (!right) {
-        position.x -= 0.15f * deltaTime;
-        if (position.x < 85) {
-            right = true;
+    if (type == 1) {
+        if (position.y < 460 && back) {
+            position.y += 0.15f * deltaTime;
+            if (position.y > 460) {
+                back = false;
+            }
+        }
+        if (!back) {
+            position.y -= 0.15f * deltaTime;
+            if (position.y < 66) {
+                back = true;
+            }
         }
     }
 }
@@ -65,12 +82,12 @@ void Enemy::draw() {
         collider.w = box.getWidth();
         collider.h = box.getHeight();
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-        //SDL_RenderDrawRect(renderer, &collider);
+        SDL_RenderDrawRect(renderer, &collider);
     }
 }
 
 Bullet Enemy::fire(ProjectileEmitterComponent* pec) {
-    Bullet bullet = Bullet(position.x + 17, position.y + 32, renderer);
+    Bullet bullet = Bullet(position.x + fireOffsetX, position.y + fireOffsetY, renderer);
     bullet.setTexture(shootTexture);
     bullet.colliderOffset.x = 12;
     bullet.colliderOffset.y = 12;
@@ -91,7 +108,7 @@ Bullet Enemy::fire(ProjectileEmitterComponent* pec) {
 }
 
 void Enemy::init() {
-    animation = AnimationComponent(2, 4, true);
+    animation = AnimationComponent(3, 6, true);
     colliderOffset.x = 10;
     colliderOffset.y = 10;
     colliderSize.w = 45;
