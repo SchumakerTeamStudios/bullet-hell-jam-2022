@@ -1,4 +1,5 @@
 // 
+// Bullet Hell Jam 2022
 // SchumakerTeam
 // Hudson Schumaker
 //
@@ -8,10 +9,10 @@
 Menu::Menu(SDL_Renderer* renderer) {
     this->renderer = renderer;
     load();
-    update();
 }
 
 Menu::~Menu() {
+    unload();
 }
 
 void Menu::load() {
@@ -21,17 +22,17 @@ void Menu::load() {
     SDL_Surface* bkgSurface = IMG_Load("data/world.jpg");
     background = SDL_CreateTextureFromSurface(renderer, bkgSurface);
     
-    SDL_Surface* surfaceTitle = TTF_RenderText_Blended(font60, "Bullet Hell 2022", Color::getOrange());
+    SDL_Surface* surfaceTitle = TTF_RenderText_Blended(font60, "Cannon Maze", Color::getOrange());
     title = SDL_CreateTextureFromSurface(renderer, surfaceTitle);
 
-    SDL_Surface* surfaceStartWhite = TTF_RenderText_Blended(font24, "- Press Enter to Start -", Color::getWhite());
+    SDL_Surface* surfaceStartWhite = TTF_RenderText_Blended(font24, "- Press Space to Start -", Color::getWhite());
     startWhiteTexture = SDL_CreateTextureFromSurface(renderer, surfaceStartWhite);
 
-    SDL_Surface* surfaceStartGray = TTF_RenderText_Blended(font24, "- Press Enter to Start -", Color::getGray());
+    SDL_Surface* surfaceStartGray = TTF_RenderText_Blended(font24, "- Press Space to Start -", Color::getGray());
     startGrayTexture = SDL_CreateTextureFromSurface(renderer, surfaceStartGray);
 }
 
-void Menu::update() {
+int Menu::update() {
     isRunning = true;
     int timeToWait = 0;
     while(isRunning) {
@@ -46,6 +47,7 @@ void Menu::update() {
         render();
         SDL_Delay(deltaTime);
     }
+    return 1;
 }
 
 void Menu::render() {
@@ -91,10 +93,10 @@ void Menu::input() {
             case SDL_QUIT:
                 isRunning = false;
                 exit(0);
-                break;
-
+            break;
+            
             case SDL_KEYDOWN:
-                if (sdlEvent.key.keysym.sym == SDLK_EXECUTE) {
+                if (sdlEvent.key.keysym.sym == SDLK_SPACE) {
                     isRunning = false;
                 }
             break;

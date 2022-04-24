@@ -1,5 +1,5 @@
 // 
-// macOS
+// Bullet Hell Jam 2022
 // SchumakerTeam
 // Hudson Schumaker
 //
@@ -7,25 +7,25 @@
 #pragma once
 
 struct Vector2d {
-    short x = 0.0f;
-    short y = 0.0f;
+    float x = 0.0f;
+    float y = 0.0f;
     
     Vector2d() {}
-    Vector2d(short x, short y) : x(x), y(y) {}
+    Vector2d(float x, float y) : x(x), y(y) {}
     
     static Vector2d foward(){
-        return Vector2d(1, 0);
+        return Vector2d(1.0f, 0.0f);
     }
 
     static Vector2d backward() {
-        return Vector2d(-1, 0);
+        return Vector2d(-1.0f, 0.0f);
     }
 
     static Vector2d up() {
-        return Vector2d(0, -1);
+        return Vector2d(0.0, -1.0f);
     }
 
     static Vector2d down() {
-        return Vector2d(0, 1);
+        return Vector2d(0.0f, 1.0f);
     }
 };

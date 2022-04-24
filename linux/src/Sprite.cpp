@@ -1,4 +1,5 @@
 // 
+// Bullet Hell Jam 2022
 // SchumakerTeam
 // Hudson Schumaker
 //
@@ -11,11 +12,16 @@ Sprite::Sprite(short x, short y, short w, short h) : position(Vector2d(x, y)), s
 Sprite::Sprite(Vector2d p, Dimension s) : position(p), size(s) {}
 
 void Sprite::setTexture(SDL_Texture* spr) {
-	SDL_Point point;
-    SDL_QueryTexture(spr, NULL, NULL, &point.x, &point.y);
 	sprite = spr; 
-    size.w = point.x; 
-    size.h = point.y;
+}
+
+BoxCollider2d Sprite::getCollider() {
+    Vector2d  colliderPosition = { position.x + colliderOffset.x, position.y + colliderOffset.y };  
+    return BoxCollider2d(colliderPosition, colliderSize);
+}
+
+Dimension Sprite::getBounds() {
+    return size;
 }
 
 short Sprite::getX() const { return position.x; };
