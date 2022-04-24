@@ -11,6 +11,7 @@ Bullet::Bullet(short x, short y, SDL_Renderer* renderer) : Sprite(x, y, 0, 0) {
     this->renderer = renderer;
     init();
 } 
+Bullet::~Bullet() {}
 
 void Bullet::draw() {
     if (!destroyed) {

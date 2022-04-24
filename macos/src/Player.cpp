@@ -216,4 +216,5 @@ void Player::unload() {
     SDL_DestroyTexture(bulletTexture);
     SDL_DestroyTexture(bulletLeftTexture);
     SDL_DestroyTexture(bulletRightTexture);
+    Mix_FreeChunk(shootSfx);
 }

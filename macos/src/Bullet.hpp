@@ -21,6 +21,8 @@ class Bullet final : public Sprite {
     public:
         Bullet();
         Bullet(short x, short y, SDL_Renderer* renderer);
+        ~Bullet();
+
         float dx; 
         float dy;
         float speed = 0.4f;

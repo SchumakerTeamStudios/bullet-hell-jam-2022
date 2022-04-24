@@ -181,6 +181,7 @@ void Level1::render() {
 void Level1::load() {
     SDL_Surface* backgroundSurface = IMG_Load("data/back1s1.png");
     background = SDL_CreateTextureFromSurface(renderer, backgroundSurface); 
+    SDL_FreeSurface(backgroundSurface);
     explodeSfx = Mix_LoadWAV("data/explode.mp3");
 
     Enemy skullOrb = Enemy(400, 40, 64, 64, "skullorb.png", "laser.mp3", "enemieshoot1.png", renderer);
@@ -218,4 +219,5 @@ void Level1::load() {
 
 void Level1::unload() {
     SDL_DestroyTexture(background);
+    Mix_FreeChunk(explodeSfx);
 }

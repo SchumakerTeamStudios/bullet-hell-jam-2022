@@ -104,15 +104,17 @@ void Enemy::load() {
     std::string spriteTexturePath = "data/" + spriteName;
     SDL_Surface* idleSurface = IMG_Load(spriteTexturePath.c_str());
     setTexture(SDL_CreateTextureFromSurface(renderer, idleSurface));
+    SDL_FreeSurface(idleSurface);
 
     std::string shootTexturePath = "data/" + shootGfxName;
     SDL_Surface* shootSurface = IMG_Load(shootTexturePath.c_str());
     shootTexture = SDL_CreateTextureFromSurface(renderer, shootSurface);
+    SDL_FreeSurface(shootSurface);
 
     std::string shootSfxPath = "data/" + shootSfxName;
     shootSfx = Mix_LoadWAV(shootSfxPath.c_str());
 }
 
 void Enemy::unload() {
-    
+    Mix_FreeChunk(shootSfx);
 }
