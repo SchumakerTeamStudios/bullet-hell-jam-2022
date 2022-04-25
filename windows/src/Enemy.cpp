@@ -82,7 +82,7 @@ void Enemy::draw() {
         collider.w = box.getWidth();
         collider.h = box.getHeight();
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-        SDL_RenderDrawRect(renderer, &collider);
+        //SDL_RenderDrawRect(renderer, &collider);
     }
 }
 
