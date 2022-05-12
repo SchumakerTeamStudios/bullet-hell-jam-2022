@@ -1,0 +1,63 @@
+name: build macos on-demand
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: ./macos
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: brew update
+      run: brew update
+    
+    - name: install dependencies
+      run: | 
+        brew install SDL2
+        brew install SDL2_image
+        brew install SDL2_ttf
+        brew install SDL2_mixer
+        brew install SDL2_gfx
+        brew install dylibbundler
+                
+    - name: copy resources
+      run: |
+        cp -vr ./data ./build
+    
+    - name: compile
+      run: |
+        g++ -Wall -std=c++17 -O3 src/*.cpp -o ./build/game -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2_gfx
+   
+    - name: bundle app
+      run: |
+        mkdir -p game.app/Contents
+        mkdir game.app/Contents/MacOS
+        mkdir game.app/Contents/libs
+        mkdir game.app/Contents/Resources
+        touch game.app/Contents/Info.plist
+        cp -r build/game game.app/Contents/MacOS/
+        cp data/iconbuilder.icns game.app/Contents/Resources/
+        cp -r data game.app/Contents/Resources/
+        echo "<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>CFBundleIconFile</key><string>iconbuilder.icns</string><key>CFBundleExecutable</key><string>game</string></dict></plist>" >> game.app/Contents/Info.plist
+        mv -f game.app build
+        
+        dylibbundler -od -b -x ./build/game.app/Contents/MacOS/game -d ./build/game.app/Contents/libs/ -p @executable_path/../libs/
+           
+    - name: compress
+      run: |
+        rm -f ./build/game
+        rm -r -f ./build/data
+        mkdir release
+        tar -cvf ./release/artifacts.tar ./build
+        ls -al ./build
+      
+    - name: upload macOS binary
+      uses: actions/upload-artifact@v3
+      with:
+        name: artifacts
+        path: /Users/runner/work/bullet-hell-jam-2022/bullet-hell-jam-2022/macos/release
