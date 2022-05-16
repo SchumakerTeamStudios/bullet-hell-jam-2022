@@ -25,7 +25,7 @@ class Sprite {
         Dimension colliderSize;
 
         virtual void draw() = 0;
-	    Dimension getBounds();
+	Dimension getBounds();
         BoxCollider2d getCollider();
 	    void setTexture(SDL_Texture* spr);
 
