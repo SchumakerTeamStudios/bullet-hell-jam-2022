@@ -38,6 +38,6 @@ class Sprite {
         short getWidth() const;
         void setWidth(short w);
 
-	    short getHeight() const;
+	short getHeight() const;
    	    void setHeight(short h);
 };
