@@ -39,5 +39,5 @@ class Sprite {
         void setWidth(short w);
 
 	short getHeight() const;
-   	    void setHeight(short h);
+   	void setHeight(short h);
 };
