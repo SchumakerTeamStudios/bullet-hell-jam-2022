@@ -30,7 +30,7 @@ class Sprite {
 	    void setTexture(SDL_Texture* spr);
 
         short getX() const;
-	    void setX(short x);
+	void setX(short x);
 
         short getY() const;
         void setY(short y);
