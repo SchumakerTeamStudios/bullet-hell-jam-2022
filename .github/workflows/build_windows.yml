@@ -43,6 +43,7 @@ jobs:
         cp D:/a/_temp/msys64/mingw64/bin/libopusfile-0.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/libpng16-16.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/libstdc++-6.dll ./build/
+        cp D:/a/_temp/msys64/mingw64/bin/libtiff-6.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/libvorbis-0.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/libvorbisfile-3.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/libwebp-7.dll ./build/
