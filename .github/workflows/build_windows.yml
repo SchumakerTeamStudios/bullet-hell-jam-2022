@@ -53,6 +53,7 @@ jobs:
         cp D:/a/_temp/msys64/mingw64/bin/SDL2_mixer.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/SDL2_ttf.dll ./build/
         cp D:/a/_temp/msys64/mingw64/bin/zlib1.dll ./build/
+        cp D:/a/_temp/msys64/mingw64/bin/libsharpyuv-o.dll ./build/
         
         cp -vr ./data/* ./build/data
         mkdir -p bin/release
